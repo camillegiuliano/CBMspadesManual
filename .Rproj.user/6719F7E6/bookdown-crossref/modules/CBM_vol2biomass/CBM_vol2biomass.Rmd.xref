@@ -1,6 +1,11 @@
-h1:overview Overview
-h2:user-input User input
-h2:default-files-provided Default files provided
-h2:pseudocode-the-general-steps Pseudocode: the general steps
-h1:usage Usage
+h1:cbm_vol2biomass CBM_vol2biomass
+h2:overview Overview
+h3:user-input User input
+h3:default-files-provided Default files provided
+h3:pseudocode-the-general-steps Pseudocode: the general steps
+h3:units Units
+h3:output Output
+h3:spades SpaDES
+h3:list-of-potential-improvements list of potential improvements
+h2:usage Usage
 

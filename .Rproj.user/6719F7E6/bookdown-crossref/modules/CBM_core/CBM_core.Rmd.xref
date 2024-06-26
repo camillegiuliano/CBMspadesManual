@@ -1,11 +1,12 @@
-h1:overview Overview
-h2:r-markdown R Markdown
-h1:usage Usage
-h1:events Events
-h2:plotting Plotting
-h2:saving Saving
-h1:data-dependencies Data dependencies
-h2:input-data Input data
-h2:output-data Output data
-h1:links-to-other-modules Links to other modules
+h1:cbm_core CBM_Core
+h2:overview Overview
+h3:r-markdown R Markdown
+h2:usage Usage
+h2:events Events
+h3:plotting Plotting
+h3:saving Saving
+h2:data-dependencies Data dependencies
+h3:input-data Input data
+h3:output-data Output data
+h2:links-to-other-modules Links to other modules
 

@@ -12,12 +12,13 @@ editor_options:
   markdown: 
     wrap: sentence
 ---
+# CBM_dataPrep_SK
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, results = "hold")
 ```
 
-# Overview
+## Overview
 
 This module is to read-in user-provided information or provide defaults.
 It reads-in rasters (`ageRaster`, `ecoRaster`, `gcIndexRaster`, `spuRaster`, and `masterRaster`) from either defaults of provided by the user.
@@ -45,7 +46,7 @@ A series of R-functions were built to help users associate the correct disturban
 Note: \* CBM_defaults objects are recreated in the `.inputObject` of this module \* nothing is in carbon or carbon increments at this point.
 This module feeds into the CBM_core module as does the CBM_vol2biomass.R module.
 
-# Usage
+## Usage
 
 ```{r module_dataprep_usage, eval=FALSE}
 library(igraph)
@@ -80,20 +81,20 @@ myInputs <- simInit(times = times, params = parameters, modules = modules,
 outInputs <- spades(myInputs)
 ```
 
-# Events
+## Events
 
 There is only when event (init) is this module.
 
-# Data dependencies
+## Data dependencies
 
-## Module parameters
+### Module parameters
 
 ```{r moduleParams, echo = FALSE, eval = FALSE}
 df_params <- SpaDES.core::moduleParams("CBM_dataPrep_SK", "..")
 knitr::kable(df_params)
 ```
 
-## Input data
+### Input data
 
 ```{r moduleInputs, echo = FALSE, eval = FALSE}
 df_inputs <- SpaDES.core::moduleInputs("CBM_dataPrep_SK", "..")
@@ -121,14 +122,14 @@ Unless using this example, the user most provide:
 The user could provide: \* a raster of the ecozones in their study area (`sim$ecoRaster`), but the script will calculate this raster based on the `sim$masterRaster` if it is not provided.
 \* a raster of the spatial units (`sim$spuRaster`) but the script will calculate this raster based on the `sim$masterRaster` if it is not provided.
 
-## Output data
+### Output data
 
 ```{r moduleOutputs, echo = FALSE, eval = FALSE}
 df_outputs <- SpaDES.core::moduleOutputs("CBM_dataPrep_SK", "..")
 knitr::kable(df_outputs)
 ```
 
-# Links to other modules
+## Links to other modules
 
 -   [`CBM_core`](https://github.com/PredictiveEcology/CBM_core)
 -   [`CBM_defaults`](https://github.com/PredictiveEcology/CBM_defaults)

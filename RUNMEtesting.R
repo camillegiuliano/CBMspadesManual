@@ -41,9 +41,11 @@ if (!"Require" %in% installed.packages(lib.loc = pkgPath) ||
                           upgrade = FALSE, force = TRUE)
 }
 install.packages('bookdown')
+install.packages('fansi')
+install.packages('vctrs')
 library(bookdown)
-
-
+library(fansi)
+library(vctrs)
 
 
 
