@@ -1,0 +1,11 @@
+h1:fread-clear-caches fread: clear caches
+h1:subset-threshold-for-index-optimization-on-compound-queries subset: threshold for index optimization on compound queries
+h1:subset-index-aware-benchmarking subset: index aware benchmarking
+h1:by-reference-operations  operations
+h1:try-to-benchmark-atomic-processes try to benchmark atomic processes
+h1:avoid-class-coercion avoid class coercion
+h1:avoid-microbenchmark...-times100 avoid 
+h1:multithreaded-processing multithreaded processing
+h1:inside-a-loop-prefer-set-instead-of inside a loop prefer  instead of 
+h1:inside-a-loop-prefer-setdt-instead-of-data.table inside a loop prefer  instead of 
+

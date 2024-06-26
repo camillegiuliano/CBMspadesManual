@@ -1,0 +1,67 @@
+h1:beginner-faqs Beginner FAQs
+h2:j-num Why do  and  return a 1-column data.table rather than vectors like ?
+h2:why-does-dtregion-return-a-1-column-data.table-rather-than-a-vector Why does  return a 1-column data.table rather than a vector?
+h2:why-does-dt-region-return-a-vector-for-the-region-column-id-like-a-1-column-data.table. Why does  return a vector for the  column? I’d like a 1-column data.table.
+h2:why-does-dt-x-y-z-not-work-i-wanted-the-3-columns-xy-and-z. Why does  not work? I wanted the 3 columns , and .
+h2:i-assigned-a-variable-mycolx-but-then-dt-mycol-returns-an-error.-how-do-i-get-it-to-look-up-the-column-name-contained-in-the-mycol-variable I assigned a variable  but then  returns an error. How do I get it to look up the column name contained in the  variable?
+h2:what-are-the-benefits-of-being-able-to-use-column-names-as-if-they-are-variables-inside-dt... What are the benefits of being able to use column names as if they are variables inside ?
+h2:ok-im-starting-to-see-what-data.table-is-about-but-why-didnt-you-just-enhance-data.frame-in-r-why-does-it-have-to-be-a-new-package OK, I’m starting to see what data.table is about, but why didn’t you just enhance  in R? Why does it have to be a new package?
+h2:why-are-the-defaults-the-way-they-are-why-does-it-work-the-way-it-does Why are the defaults the way they are? Why does it work the way it does?
+h2:isnt-this-already-done-by-with-and-subset-in-base Isn’t this already done by  and  in ?
+h2:why-does-xy-return-all-the-columns-from-y-too-shouldnt-it-return-a-subset-of-x Why does  return all the columns from  too? Shouldn’t it return a subset of ?
+h2:MergeDiff What is the difference between  and ?
+h2:anything-else-about-xy-sumfoobar Anything else about ?
+h2:thats-nice.-how-did-you-manage-to-change-it-given-that-users-depended-on-the-old-behaviour That’s nice. How did you manage to change it given that users depended on the old behaviour?
+h1:general-syntax General Syntax
+h2:how-can-i-avoid-writing-a-really-long-j-expression-youve-said-that-i-should-use-the-column-names-but-ive-got-a-lot-of-columns. How can I avoid writing a really long  expression? You’ve said that I should use the column , but I’ve got a lot of columns.
+h2:why-is-the-default-for-mult-now-all Why is the default for  now ?
+h2:im-using-c-in-j-and-getting-strange-results. I’m using  in  and getting strange results.
+h2:i-have-built-up-a-complex-table-with-many-columns.-i-want-to-use-it-as-a-template-for-a-new-table-i.e.-create-a-new-table-with-no-rows-but-with-the-column-names-and-types-copied-from-my-table.-can-i-do-that-easily I have built up a complex table with many columns. I want to use it as a template for a new table; , create a new table with no rows, but with the column names and types copied from my table. Can I do that easily?
+h2:is-a-null-data.table-the-same-as-dt0 Is a null data.table the same as ?
+h2:DTremove1 Why has the  alias been removed?
+h2:DTremove2 But my code uses  and it works. The previous FAQ says that  has been removed.
+h2:what-are-the-scoping-rules-for-j-expressions What are the scoping rules for  expressions?
+h2:j-trace Can I trace the  expression as it runs through the groups?
+h2:inside-each-group-why-are-the-group-variables-length-1 Inside each group, why are the group variables length-1?
+h2:only-the-first-10-rows-are-printed-how-do-i-print-more Only the first 10 rows are printed, how do I print more?
+h2:with-an-xy-join-what-if-x-contains-a-column-called-y With an  join, what if  contains a column called ?
+h2:xzy-is-failing-because-x-contains-a-column-y.-id-like-it-to-use-the-table-y-in-calling-scope.  is failing because  contains a column . I’d like it to use the table  in calling scope.
+h2:can-you-explain-further-why-data.table-is-inspired-by-ab-syntax-in-base Can you explain further why data.table is inspired by  syntax in ?
+h2:can-base-be-changed-to-do-this-then-rather-than-a-new-package Can base be changed to do this then, rather than a new package?
+h2:ive-heard-that-data.table-syntax-is-analogous-to-sql. I’ve heard that data.table syntax is analogous to SQL.
+h2:SmallerDiffs What are the smaller syntax differences between  and data.table
+h2:im-using-j-for-its-side-effect-only-but-im-still-getting-data-returned.-how-do-i-stop-that I’m using  for its side effect only, but I’m still getting data returned. How do I stop that?
+h2:why-does-.data.table-now-have-a-drop-argument-from-v1.5 Why does  now have a  argument from v1.5?
+h2:rolling-joins-are-cool-and-very-fast-was-that-hard-to-program Rolling joins are cool and very fast! Was that hard to program?
+h2:why-does-dti-col-value-return-the-whole-of-dt-i-expected-either-no-visible-value-consistent-with---or-a-message-or-return-value-containing-how-many-rows-were-updated.-it-isnt-obvious-that-the-data-has-indeed-been-updated-by-reference. Why does  return the whole of ? I expected either no visible value (consistent with ), or a message or return value containing how many rows were updated. It isn’t obvious that the data has indeed been updated by reference.
+h2:ok-thanks.-what-was-so-difficult-about-the-result-of-dti-col-value-being-returned-invisibly OK, thanks. What was so difficult about the result of  being returned invisibly?
+h2:why-do-i-have-to-type-dt-sometimes-twice-after-using-to-print-the-result-to-console Why do I have to type  sometimes twice after using  to print the result to console?
+h2:ive-noticed-that-basecbind.data.frame-and-baserbind.data.frame-appear-to-be-changed-by-data.table.-how-is-this-possible-why I’ve noticed that  (and ) appear to be changed by data.table. How is this possible? Why?
+h2:r-dispatch I’ve read about method dispatch (  may or may not dispatch to ) but  does R know how to dispatch? Are dots significant or special? How on earth does R know which function to dispatch and when?
+h1:questions-relating-to-compute-time Questions relating to compute time
+h2:i-have-20-columns-and-a-large-number-of-rows.-why-is-an-expression-of-one-column-so-quick I have 20 columns and a large number of rows. Why is an expression of one column so quick?
+h2:i-dont-have-a-key-on-a-large-table-but-grouping-is-still-really-quick.-why-is-that I don’t have a  on a large table, but grouping is still really quick. Why is that?
+h2:why-is-grouping-by-columns-in-the-key-faster-than-an-ad-hoc-by Why is grouping by columns in the key faster than an  ?
+h2:what-are-primary-and-secondary-indexes-in-data.table What are primary and secondary indexes in data.table?
+h1:error-messages Error messages
+h2:could-not-find-function-dt 
+h2:unused-arguments-mysum-sumv 
+h2:translatecharutf8-must-be-called-on-a-charsxp 
+h2:cbinderror  returns a strange format,  
+h2:cannot-change-value-of-locked-binding-for-.sd 
+h2:cannot-change-value-of-locked-binding-for-.n 
+h1:warning-messages Warning messages
+h2:the-following-objects-are-masked-from-packagebase-cbind-rbind 
+h2:coerced-numeric-rhs-to-integer-to-match-the-columns-type 
+h2:reading-data.table-from-rds-or-rdata-file Reading data.table from RDS or RData file
+h1:general-questions-about-the-package General questions about the package
+h2:v1.3-appears-to-be-missing-from-the-cran-archive v1.3 appears to be missing from the CRAN archive?
+h2:is-data.table-compatible-with-s-plus Is data.table compatible with S-plus?
+h2:is-it-available-for-linux-mac-and-windows Is it available for Linux, Mac and Windows?
+h2:i-think-its-great.-what-can-i-do I think it’s great. What can I do?
+h2:i-think-its-not-great.-how-do-i-warn-others-about-my-experience I think it’s not great. How do I warn others about my experience?
+h2:i-have-a-question.-i-know-the-r-help-posting-guide-tells-me-to-contact-the-maintainer-not-r-help-but-is-there-a-larger-group-of-people-i-can-ask I have a question. I know the r-help posting guide tells me to contact the maintainer (not r-help), but is there a larger group of people I can ask?
+h2:where-are-the-datatable-help-archives Where are the datatable-help archives?
+h2:id-prefer-not-to-post-on-the-issues-page-can-i-mail-just-one-or-two-people-privately I’d prefer not to post on the Issues page, can I mail just one or two people privately?
+h2:i-have-created-a-package-that-uses-data.table.-how-do-i-ensure-my-package-is-data.table-aware-so-that-inheritance-from-data.frame-works I have created a package that uses data.table. How do I ensure my package is data.table-aware so that inheritance from  works?
+

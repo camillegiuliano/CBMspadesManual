@@ -1,0 +1,18 @@
+h2:introduction Introduction
+h2:problem-description Problem description
+h3:example Example
+h3:approaches-to-the-problem Approaches to the problem
+h4:avoid-lazy-evaluation Avoid 
+h4:use-of-parse-eval Use of  / 
+h4:computing-on-the-language Computing on the language
+h4:use-third-party-packages Use third party packages
+h2:programming-on-data.table Programming on data.table
+h3:substituting-variables-and-names Substituting variables and names
+h3:substitute-variables-and-character-values Substitute variables and character values
+h3:substituting-lists-of-arbitrary-length Substituting lists of arbitrary length
+h3:substitution-of-a-complex-query Substitution of a complex query
+h2:retired-interfaces Retired interfaces
+h3:get 
+h3:mget 
+h3:eval 
+

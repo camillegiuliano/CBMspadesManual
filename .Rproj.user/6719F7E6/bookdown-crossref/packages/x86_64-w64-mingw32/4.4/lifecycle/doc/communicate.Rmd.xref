@@ -1,0 +1,14 @@
+h2:basics Basics
+h2:functions Functions
+h3:deprecate-a-function Deprecate a function
+h3:gradual-deprecation Gradual deprecation
+h3:rename-a-function Rename a function
+h3:supersede-a-function Supersede a function
+h3:mark-function-as-experimental Mark function as experimental
+h2:arguments Arguments
+h3:deprecate-an-argument-keeping-the-existing-default Deprecate an argument, keeping the existing default
+h3:deprecating-an-argument-providing-a-new-default Deprecating an argument, providing a new default
+h3:renaming-an-argument Renaming an argument
+h3:reducing-allowed-inputs-to-an-argument Reducing allowed inputs to an argument
+h2:anything-else Anything else
+

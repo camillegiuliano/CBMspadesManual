@@ -1,0 +1,37 @@
+h2:data Data
+h2:introduction Introduction
+h2:secondary-indices 1. Secondary indices
+h3:a-what-are-secondary-indices a) What are secondary indices?
+h3:b-set-and-get-secondary-indices b) Set and get secondary indices
+h4:how-can-we-set-the-column-origin-as-a-secondary-index-in-the-data.table-flights – How can we set the column  as a secondary index in the  ?
+h4:how-can-we-get-all-the-secondary-indices-set-so-far-in-flights – How can we get all the secondary indices set so far in ?
+h3:c-why-do-we-need-secondary-indices c) Why do we need secondary indices?
+h4:reordering-a-data.table-can-be-expensive-and-not-always-ideal – Reordering a data.table can be expensive and not always ideal
+h4:setkey-requires  requires:
+h1:section 
+h4:there-can-be-only-one-key-at-the-most – There can be only one  at the most
+h4:secondary-indices-can-be-reused – Secondary indices can be reused
+h4:the-new-on-argument-allows-for-cleaner-syntax-and-automatic-creation-and-reuse-of-secondary-indices – The new  argument allows for cleaner syntax and automatic creation and reuse of secondary indices
+h4:on-argument  argument
+h1:section-1 
+h2:fast-subsetting-using-on-argument-and-secondary-indices 2. Fast subsetting using  argument and secondary indices
+h3:a-fast-subsets-in-i a) Fast subsets in 
+h4:subset-all-rows-where-the-origin-airport-matches-jfk-using-on – Subset all rows where the origin airport matches  using 
+h4:how-can-i-subset-based-on-origin-and-dest-columns – How can I subset based on    columns?
+h3:b-select-in-j b) Select in 
+h4:return-arr_delay-column-alone-as-a-data.table-corresponding-to-origin-lga-and-dest-tpa – Return  column alone as a data.table corresponding to  and 
+h3:c-chaining c) Chaining
+h4:on-the-result-obtained-above-use-chaining-to-order-the-column-in-decreasing-order. – On the result obtained above, use chaining to order the column in decreasing order.
+h3:d-compute-or-do-in-j d) Compute or  in 
+h4:find-the-maximum-arrival-delay-corresponding-to-origin-lga-and-dest-tpa. – Find the maximum arrival delay corresponding to  and .
+h3:e-sub-assign-by-reference-using-in-j e)  by reference using  in 
+h3:f-aggregation-using-by f) Aggregation using 
+h4:get-the-maximum-departure-delay-for-each-month-corresponding-to-origin-jfk.-order-the-result-by-month – Get the maximum departure delay for each  corresponding to . Order the result by 
+h3:g-the-mult-argument g) The  argument
+h4:subset-only-the-first-matching-row-where-dest-matches-bos-and-day – Subset only the first matching row where  matches  and 
+h4:subset-only-the-last-matching-row-where-origin-matches-lga-jfk-ewr-and-dest-matches-xna – Subset only the last matching row where  matches  and  matches 
+h3:h-the-nomatch-argument h) The  argument
+h4:from-the-previous-example-subset-all-rows-only-if-theres-a-match – From the previous example, subset all rows only if there’s a match
+h2:auto-indexing 3. Auto indexing
+h1:section-2 
+

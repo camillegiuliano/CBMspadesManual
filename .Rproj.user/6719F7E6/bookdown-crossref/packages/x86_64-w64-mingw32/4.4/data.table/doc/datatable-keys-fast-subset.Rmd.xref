@@ -1,0 +1,40 @@
+h2:data Data
+h2:introduction Introduction
+h2:keys 1. Keys
+h3:a-what-is-a-key a) What is a ?
+h4:key-properties Keys and their properties
+h3:b-set-get-and-use-keys-on-a-data.table b) Set, get and use keys on a 
+h4:how-can-we-set-the-column-origin-as-key-in-the-data.table-flights – How can we set the column  as key in the  ?
+h4:set-and set* and :
+h4:use-the-key-column-origin-to-subset-all-rows-where-the-origin-airport-matches-jfk – Use the key column  to subset all rows where the origin airport matches 
+h4:how-can-we-get-the-columns-a-data.table-is-keyed-by – How can we get the column(s) a  is keyed by?
+h3:c-keys-and-multiple-columns c) Keys and multiple columns
+h4:how-can-i-set-keys-on-both-origin-and-dest-columns – How can I set keys on both    columns?
+h4:subset-all-rows-using-key-columns-where-first-key-column-origin-matches-jfk-and-second-key-column-dest-matches-mia – Subset all rows using key columns where first key column  matches  and second key column  matches 
+h4:multiple-key-point How does the subset work here?
+h4:subset-all-rows-where-just-the-first-key-column-origin-matches-jfk – Subset all rows where just the first key column  matches 
+h4:subset-all-rows-where-just-the-second-key-column-dest-matches-mia – Subset all rows where just the second key column  matches 
+h4:whats-happening-here What’s happening here?
+h2:combining-keys-with-j-and-by 2. Combining keys with  and 
+h3:a-select-in-j a) Select in 
+h4:return-arr_delay-column-as-a-data.table-corresponding-to-origin-lga-and-dest-tpa. – Return  column as a  corresponding to  and .
+h3:b-chaining b) Chaining
+h4:on-the-result-obtained-above-use-chaining-to-order-the-column-in-decreasing-order. – On the result obtained above, use chaining to order the column in decreasing order.
+h3:c-compute-or-do-in-j c) Compute or  in 
+h4:find-the-maximum-arrival-delay-corresponding-to-origin-lga-and-dest-tpa. – Find the maximum arrival delay corresponding to  and .
+h3:d-sub-assign-by-reference-using-in-j d)  by reference using  in 
+h3:e-aggregation-using-by e) Aggregation using 
+h4:get-the-maximum-departure-delay-for-each-month-corresponding-to-origin-jfk.-order-the-result-by-month – Get the maximum departure delay for each  corresponding to . Order the result by 
+h2:additional-arguments---mult-and-nomatch 3. Additional arguments -  and 
+h3:a-the-mult-argument a) The  argument
+h4:subset-only-the-first-matching-row-from-all-rows-where-origin-matches-jfk-and-dest-matches-mia – Subset only the first matching row from all rows where  matches  and  matches 
+h4:subset-only-the-last-matching-row-of-all-the-rows-where-origin-matches-lga-jfk-ewr-and-dest-matches-xna – Subset only the last matching row of all the rows where  matches  and  matches 
+h3:b-the-nomatch-argument b) The  argument
+h4:from-the-previous-example-subset-all-rows-only-if-theres-a-match – From the previous example, Subset all rows only if there’s a match
+h2:binary-search-vs-vector-scans 4. binary search vs vector scans
+h3:a-performance-of-binary-search-approach a) Performance of binary search approach
+h3:b-why-does-keying-a-data.table-result-in-blazing-fast-subsets b) Why does keying a  result in blazing fast subsets?
+h4:vector-scan-approach Vector scan approach
+h4:binary-search-approach Binary search approach
+h2:summary Summary
+

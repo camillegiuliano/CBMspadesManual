@@ -1,0 +1,35 @@
+h2:data Data
+h2:introduction Introduction
+h2:reference-semantics 1. Reference semantics
+h3:a-background a) Background
+h4:shallow-vs-deep-copy  vs  copy
+h1:section 
+h3:b-the-operator b) The  operator
+h1:section-1 
+h1:section-2 
+h2:addupdatedelete-columns-by-reference 2. Add/update/delete columns 
+h3:ref-j a) Add columns by reference
+h4:how-can-we-add-columns-speed-and-total-delay-of-each-flight-to-flights-data.table – How can we add columns  and  of each flight to  ?
+h4:note-that Note that
+h3:ref-i-j b) Update some rows of columns by reference -  by reference
+h4:replace-those-rows-where-hour-24-with-the-value-0 – Replace those rows where  with the value 
+h1:section-3 
+h4:update-by-reference-question Exercise:
+h3:c-delete-column-by-reference c) Delete column by reference
+h4:remove-delay-column – Remove  column
+h4:delete-convenience 
+h3:ref-j-by d)  along with grouping using 
+h4:how-can-we-add-a-new-column-which-contains-for-each-origdest-pair-the-maximum-speed – How can we add a new column which contains for each  pair the maximum speed?
+h1:section-4 
+h3:e-multiple-columns-and e) Multiple columns and 
+h4:how-can-we-add-two-more-columns-computing-max-of-dep_delay-and-arr_delay-for-each-month-using-.sd – How can we add two more columns computing  of  and  for each month, using ?
+h1:section-5 
+h2:and-copy 3.  and 
+h3:a-for-its-side-effect a)  for its side effect
+h3:b-the-copy-function b) The  function
+h1:section-6 
+h1:section-7 
+h2:summary Summary
+h4:the-operator The  operator
+h1:section-8 
+

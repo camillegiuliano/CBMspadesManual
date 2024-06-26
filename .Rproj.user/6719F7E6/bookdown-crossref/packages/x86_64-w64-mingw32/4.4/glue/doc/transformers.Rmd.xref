@@ -1,0 +1,8 @@
+h3:collapse-transformer collapse transformer
+h3:shell-quoting-transformer Shell quoting transformer
+h3:emoji-transformer emoji transformer
+h3:sprintf-transformer sprintf transformer
+h3:signif-transformer signif transformer
+h3:safely-transformer safely transformer
+h3:variables-and-values-transformer  transformer
+

@@ -1,0 +1,58 @@
+h2:data-analysis-using-data.table Data analysis using 
+h2:data Data
+h2:introduction Introduction
+h2:basics-1 1. Basics
+h3:what-is-datatable-1a a) What is ?
+h4:note-that Note that:
+h3:enhanced-1b b) General form - in what way is a  ?
+h4:the-way-to-read-it-out-loud-is The way to read it (out loud) is:
+h3:subset-i-1c c) Subset rows in 
+h4:get-all-the-flights-with-jfk-as-the-origin-airport-in-the-month-of-june. – Get all the flights with  as the origin airport in the month of June.
+h4:subset-rows-integer – Get the first two rows from .
+h4:sort-flights-first-by-column-origin-in-ascending-order-and-then-by-dest-in-descending-order – Sort  first by column  in  order, and then by  in  order:
+h4:order-is-internally-optimised  is internally optimised
+h3:select-j-1d d) Select column(s) in 
+h4:select-arr_delay-column-but-return-it-as-a-vector. – Select  column, but return it as a .
+h4:select-arr_delay-column-but-return-as-a-data.table-instead. – Select  column, but return as a  instead.
+h4:tip-1 Tip:
+h4:select-both-arr_delay-and-dep_delay-columns. – Select both  and  columns.
+h4:select-both-arr_delay-and-dep_delay-columns-and-rename-them-to-delay_arr-and-delay_dep. – Select both  and  columns  rename them to  and .
+h3:e-compute-or-do-in-j e) Compute or  in 
+h4:how-many-trips-have-had-total-delay-0 – How many trips have had total delay < 0?
+h4:whats-happening-here What’s happening here?
+h3:f-subset-in-i-and-do-in-j f) Subset in   do in 
+h4:calculate-the-average-arrival-and-departure-delay-for-all-flights-with-jfk-as-the-origin-airport-in-the-month-of-june. – Calculate the average arrival and departure delay for all flights with  as the origin airport in the month of June.
+h4:how-many-trips-have-been-made-in-2014-from-jfk-airport-in-the-month-of-june – How many trips have been made in 2014 from  airport in the month of June?
+h4:special-N Special symbol :
+h3:refer_j g) Great! But how can I refer to columns by names in  (like in a )?
+h4:select-both-arr_delay-and-dep_delay-columns-the-data.frame-way. – Select both  and  columns the  way.
+h4:select-columns-named-in-a-variable-using-the-..-prefix – Select columns named in a variable using the  prefix
+h4:select-columns-named-in-a-variable-using-with-false – Select columns named in a variable using 
+h2:aggregations 2. Aggregations
+h3:a-grouping-using-by a) Grouping using 
+h4:how-can-we-get-the-number-of-trips-corresponding-to-each-origin-airport – How can we get the number of trips corresponding to each origin airport?
+h4:origin-.N – How can we calculate the number of trips for each origin airport for carrier code ?
+h4:origin-dest-.N – How can we get the total number of trips for each  pair for carrier code ?
+h4:origin-dest-month – How can we get the average arrival and departure delay for each  pair for each month for carrier code ?
+h3:b-sorted-by-keyby b) Sorted : 
+h4:so-how-can-we-directly-order-by-all-the-grouping-variables – So how can we directly order by all the grouping variables?
+h3:c-chaining c) Chaining
+h4:how-can-we-order-ans-using-the-columns-origin-in-ascending-order-and-dest-in-descending-order – How can we order  using the columns  in ascending order, and  in descending order?
+h3:d-expressions-in-by d) Expressions in 
+h4:can-by-accept-expressions-as-well-or-does-it-just-take-columns – Can  accept  as well or does it just take columns?
+h3:e-multiple-columns-in-j---.sd e) Multiple columns in  - 
+h4:do-we-have-to-compute-mean-for-each-column-individually – Do we have to compute  for each column individually?
+h4:special-SD Special symbol :
+h4:how-can-we-specify-just-the-columns-we-would-like-to-compute-the-mean-on – How can we specify just the columns we would like to compute the  on?
+h4:sdcols .SDcols
+h3:f-subset-.sd-for-each-group f) Subset  for each group:
+h4:how-can-we-return-the-first-two-rows-for-each-month – How can we return the first two rows for each ?
+h3:g-why-keep-j-so-flexible g) Why keep  so flexible?
+h4:how-can-we-concatenate-columns-a-and-b-for-each-group-in-id – How can we concatenate columns  and  for each group in ?
+h4:what-if-we-would-like-to-have-all-the-values-of-column-a-and-b-concatenated-but-returned-as-a-list-column – What if we would like to have all the values of column  and  concatenated, but returned as a list column?
+h2:summary Summary
+h4:using-i Using :
+h4:using-j Using :
+h4:using-by Using :
+h4:and-remember-the-tip And remember the tip:
+

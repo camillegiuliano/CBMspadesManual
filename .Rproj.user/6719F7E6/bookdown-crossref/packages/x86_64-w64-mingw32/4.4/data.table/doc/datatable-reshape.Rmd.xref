@@ -1,0 +1,22 @@
+h2:data Data
+h2:introduction Introduction
+h2:default-functionality 1. Default functionality
+h3:a-melting-data.tables-wide-to-long a) ing s (wide to long)
+h4:convert-dt-to-long-form-where-each-dob-is-a-separate-observation. - Convert  to  form where each  is a separate observation.
+h4:name-the-variable-and-value-columns-to-child-and-dob-respectively - Name the  and  columns to  and  respectively
+h3:b-dcasting-data.tables-long-to-wide b) ing s (long to wide)
+h4:how-can-we-get-back-to-the-original-data-table-dt-from-dt.m1 - How can we get back to the original data table  from ?
+h4:starting-from-dt.m1-how-can-we-get-the-number-of-children-in-each-family - Starting from , how can we get the number of children in each family?
+h2:limitations-in-current-meltdcast-approaches 2. Limitations in current  approaches
+h4:issues Issues
+h2:enhanced-new-functionality 3. Enhanced (new) functionality
+h3:a-enhanced-melt a) Enhanced 
+h4:melt-multiple-columns-simultaneously -  multiple columns simultaneously
+h4:using-patterns - Using 
+h4:using-measure-to-specify-measure.vars-via-separator-or-pattern - Using  to specify  via separator or pattern
+h3:b-enhanced-dcast b) Enhanced 
+h4:casting-multiple-value.vars-simultaneously - Casting multiple s simultaneously
+h1:section 
+h4:multiple-functions-to-fun.aggregate Multiple functions to :
+h1:section-1 
+

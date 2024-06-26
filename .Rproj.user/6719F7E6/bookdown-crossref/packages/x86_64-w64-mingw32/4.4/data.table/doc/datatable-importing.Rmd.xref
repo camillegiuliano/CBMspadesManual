@@ -1,0 +1,17 @@
+h2:why-to-import-data.table Why to import 
+h2:importing-data.table-is-easy Importing  is easy
+h2:description-file-description  file {DESCRIPTION}
+h2:namespace-file-namespace  file {NAMESPACE}
+h2:usage Usage
+h2:testing Testing
+h2:testing-using-testthat Testing using 
+h2:globals Dealing with 
+h2:care-needed-when-providing-and-using-options Care needed when providing and using options
+h2:troubleshooting Troubleshooting
+h2:license License
+h2:optionally-import-data.table-suggests Optionally import : Suggests
+h2:data.table-in-imports-but-nothing-imported  in  but nothing imported
+h2:further-information-on-dependencies Further information on dependencies
+h2:importing-data.table-c-routines Importing data.table C routines
+h2:importing-from-non-r-applications-non-r-api Importing from non-R Applications {non-r-API}
+
