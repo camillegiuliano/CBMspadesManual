@@ -12,10 +12,8 @@ library(bookdown)
 #this is currently rendering as an .Rmd and not html, not creating a docs folder. 
 render_book(output_format = "all", envir = new.env())
 
+render_book()
+
 # render_book(output_format = "bookdown::bs4_book", envir = new.env())
-
-
-render_book(output_format = 'all', output_dir = 'docs', config_file = '_bookdown.yml')
-render_book(output_format = "bookdown::bs4_book", envir = new.env())
 
 
