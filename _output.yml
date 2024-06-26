@@ -1,0 +1,9 @@
+bookdown::bs4_book:
+  css: css/style.css
+  theme:
+    primary: "#01665e"
+    fg: "#2b2121"
+    bg: "#ffffff"
+  footnotes_inline: false
+  edit: null
+  download: ["pdf", "epub"]
