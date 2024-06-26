@@ -1,0 +1,17 @@
+h2:no-more-partial-matching-for-lists No more partial matching for lists!
+h2:output-character-vectors-for-human-eyes Output character vectors for human eyes
+h2:print-the-content-of-a-text-file Print the content of a text file
+h2:get-the-data-uri-of-a-file Get the data URI of a file
+h2:match-strings-and-do-substitutions Match strings and do substitutions
+h2:search-and-replace-strings-in-files Search and replace strings in files
+h2:manipulate-filename-extensions Manipulate filename extensions
+h2:find-files-in-a-project-without-the-pain-of-thinking-about-absoluterelative-paths Find files (in a project) without the pain of thinking about absolute/relative paths
+h2:types-of-operating-systems Types of operating systems
+h2:loading-and-attaching-packages Loading and attaching packages
+h2:readwrite-files-in-utf-8 Read/write files in UTF-8
+h2:convert-numbers-to-english-words Convert numbers to English words
+h2:cache-an-r-expression-to-an-rds-file Cache an R expression to an RDS file
+h2:check-reverse-dependencies-of-a-package Check reverse dependencies of a package
+h2:input-a-character-vector-into-the-rstudio-source-editor Input a character vector into the RStudio source editor
+h2:print-session-information Print session information
+

@@ -1,0 +1,39 @@
+h1:url-your-book-url-like-httpsbookdown.orgyihuibookdown url: your book url like https://bookdown.org/yihui/bookdown
+h1:cover-image-path-to-the-social-sharing-image-like-imagescover.jpg cover-image: path to the social sharing image like images/cover.jpg
+h1:about About
+h2:usage Usage
+h2:render-book Render book
+h2:preview-book Preview book
+h1:overview Overview
+h1:usage-1 Usage
+h1:events Events
+h2:plotting Plotting
+h2:saving Saving
+h1:data-dependencies Data dependencies
+h2:input-data Input data
+h2:output-data Output data
+h1:links-to-other-modules Links to other modules
+h1:overview-1 Overview
+h1:usage-2 Usage
+h1:events-1 Events
+h1:data-dependencies-1 Data dependencies
+h2:module-parameters Module parameters
+h2:input-data-1 Input data
+h2:output-data-1 Output data
+h1:links-to-other-modules-1 Links to other modules
+h1:overview-2 Overview
+h2:user-input User input
+h2:default-files-provided Default files provided
+h2:pseudocode-the-general-steps Pseudocode: the general steps
+h1:usage-3 Usage
+h1:overview-3 Overview
+h2:r-markdown R Markdown
+h1:usage-4 Usage
+h1:events-2 Events
+h2:plotting-1 Plotting
+h2:saving-1 Saving
+h1:data-dependencies-2 Data dependencies
+h2:input-data-2 Input data
+h2:output-data-2 Output data
+h1:links-to-other-modules-2 Links to other modules
+
