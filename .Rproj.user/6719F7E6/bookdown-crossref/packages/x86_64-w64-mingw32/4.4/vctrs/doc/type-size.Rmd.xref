@@ -1,0 +1,10 @@
+h2:prototype Prototype
+h3:base-prototypes Base prototypes
+h3:coercing-to-common-type Coercing to common type
+h3:casting-to-specified-type Casting to specified type
+h2:size Size
+h3:slicing Slicing
+h3:common-sizes-recycling-rules Common sizes: recycling rules
+fig:echo Summary of vctrs recycling rules. X indicates an error
+h2:appendix-recycling-in-base-r Appendix: recycling in base R
+

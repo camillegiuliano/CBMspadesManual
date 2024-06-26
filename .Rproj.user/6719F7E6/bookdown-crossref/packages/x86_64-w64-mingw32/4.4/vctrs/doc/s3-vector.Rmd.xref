@@ -1,0 +1,27 @@
+h2:basics Basics
+h3:percent-class Percent class
+h3:format-method  method
+h2:casting-and-coercion Casting and coercion
+h3:double-dispatch Double dispatch
+h3:percent Percent class
+h3:decimal-class Decimal class
+h3:cached-sum Cached sum class
+h2:record-style-objects Record-style objects
+h3:rational-class Rational class
+h3:decimal2-class Decimal2 class
+h2:equality-and-comparison Equality and comparison
+h3:rational-class-1 Rational class
+h3:polynomial-class Polynomial class
+h4:make-an-atomic-polynomial-vector Make an atomic polynomial vector
+h4:implementing-equality-and-comparison Implementing equality and comparison
+h2:arithmetic Arithmetic
+h3:cached-sum-class Cached sum class
+h3:meter-class Meter class
+h2:implementing-a-vctrs-s3-class-in-a-package Implementing a vctrs S3 class in a package
+h3:getting-started Getting started
+h3:low-level-and-user-friendly-constructors Low-level and user-friendly constructors
+h3:other-helpers Other helpers
+h3:arithmetic-1 Arithmetic
+h3:testing Testing
+h3:existing-classes Existing classes
+

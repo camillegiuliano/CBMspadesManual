@@ -1,0 +1,14 @@
+h2:definitions Definitions
+h3:examples Examples
+h2:c-and-vctrsvec_c  and 
+h3:atomic-vectors Atomic vectors
+h3:incompatible-vectors-and-non-vectors Incompatible vectors and non-vectors
+h3:factors Factors
+h3:date-times Date-times
+h3:dates-and-date-times Dates and date-times
+h3:missing-values Missing values
+h3:data-frames Data frames
+h3:matrices-and-arrays Matrices and arrays
+h3:implementation Implementation
+h2:ifelse 
+
