@@ -2,50 +2,63 @@ Package: Require
 Type: Package
 Title: Installing and Loading R Packages for Reproducible Workflows
 Description: A single key function, 'Require' that makes rerun-tolerant
-    versions of 'install.packages' and `require` for CRAN packages, packages
-    no longer on CRAN (i.e., archived), specific versions of packages, 
-    and GitHub packages. This approach is developed to create reproducible 
-    workflows that are flexible and fast enough to use while in development stages,
-    while able to build snapshots once a stable package collection is found. 
-    As with other functions in a reproducible workflow, this package 
-    emphasizes functions that return the same result whether it is 
-    the first or subsequent times running the function, with subsequent times being
-    sufficiently fast that they can be run every time without undue waiting burden on 
-    the user or developer.
+        versions of 'install.packages' and `require` for CRAN packages,
+        packages no longer on CRAN (i.e., archived), specific versions
+        of packages, and GitHub packages. This approach is developed to
+        create reproducible workflows that are flexible and fast enough
+        to use while in development stages, while able to build
+        snapshots once a stable package collection is found. As with
+        other functions in a reproducible workflow, this package
+        emphasizes functions that return the same result whether it is
+        the first or subsequent times running the function, with
+        subsequent times being sufficiently fast that they can be run
+        every time without undue waiting burden on the user or
+        developer.
 URL: https://Require.predictiveecology.org,
         https://github.com/PredictiveEcology/Require
-Date: 2022-10-27
-Version: 0.1.6.9015
+Date: 2024-07-02
+Version: 0.3.1.9092
 Authors@R: c(
-    person("Eliot J B", "McIntire", email = "eliot.mcintire@canada.ca",
-    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6914-8316")),
-    person("Her Majesty the Queen in Right of Canada, as represented by the Minister of Natural Resources Canada",
-    role = "cph")
+    person(given = "Eliot J B",
+           family = "McIntire",
+           role = c("aut", "cre"),
+           email = "eliot.mcintire@canada.ca",
+           comment = c(ORCID = "0000-0002-6914-8316")),
+      person(given = "Alex M",
+             family = "Chubaty",
+             role = "ctb",
+             email = "achubaty@for-cast.ca",
+             comment = c(ORCID = "0000-0001-7146-8135")),
+    person(paste("Her Majesty the Queen in Right of Canada,",
+                 "as represented by the Minister of Natural Resources Canada"),
+           role = "cph")
     )
 Depends: R (>= 4.0)
-Imports: data.table (>= 1.10.4), methods, utils
-Suggests: covr, remotes, pak, parallel, testit
+Imports: data.table (>= 1.10.4), methods, sys, tools, utils
+Suggests: covr, curl, diffobj, gitcreds, googledrive, httr, pak,
+        parallel, rematch2, rprojroot, testthat (>= 3.0.0), waldo,
+        withr
 Encoding: UTF-8
 Language: en-CA
 License: GPL-3
 BugReports: https://github.com/PredictiveEcology/Require/issues
 ByteCompile: yes
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
-RemoteType: github
-RemoteHost: api.github.com
-RemoteRepo: Require
-RemoteUsername: PredictiveEcology
-RemoteRef: bfb3ed19231d38362e7324f10435a387e29b6ce1
-RemoteSha: bfb3ed19231d38362e7324f10435a387e29b6ce1
-GithubRepo: Require
-GithubUsername: PredictiveEcology
-GithubRef: bfb3ed19231d38362e7324f10435a387e29b6ce1
-GithubSHA1: bfb3ed19231d38362e7324f10435a387e29b6ce1
+RoxygenNote: 7.3.1
+Collate: 'CRAN.R' 'Require-helpers.R' 'Require-package.R' 'messages.R'
+        'Require2.R' 'RequireOptions.R' 'envs.R' 'extract.R'
+        'helpers.R' 'pkgDep.R' 'pkgDep3.R' 'pkgSnapshot.R'
+        'setLibPaths.R' 'setup.R' 'zzz.R'
+Config/testthat/edition: 3
+Repository: https://predictiveecology.r-universe.dev
+RemoteUrl: https://github.com/PredictiveEcology/Require
+RemoteRef: simplify4
+RemoteSha: a5f9f0fe4fc8a7306116e37bdbef514d1ec8fb99
 NeedsCompilation: no
-Packaged: 2024-06-26 19:45:29 UTC; cgiulian
+Packaged: 2024-07-02 15:25:50 UTC; root
 Author: Eliot J B McIntire [aut, cre] (<https://orcid.org/0000-0002-6914-8316>),
+  Alex M Chubaty [ctb] (<https://orcid.org/0000-0001-7146-8135>),
   Her Majesty the Queen in Right of Canada, as represented by the
     Minister of Natural Resources Canada [cph]
 Maintainer: Eliot J B McIntire <eliot.mcintire@canada.ca>
-Built: R 4.4.0; ; 2024-06-26 19:45:30 UTC; windows
+Built: R 4.4.0; ; 2024-07-02 15:27:53 UTC; windows

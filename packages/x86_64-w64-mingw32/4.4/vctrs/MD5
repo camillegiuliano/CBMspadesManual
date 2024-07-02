@@ -1,4 +1,4 @@
-7d912ecd1588317d756bacf898163c3e *DESCRIPTION
+5c82405e8985383157615be98324022a *DESCRIPTION
 ca575f564c1567bdcab2ff48c2514592 *INDEX
 bb38d60fdc799f700b0f8537f9fc4110 *LICENSE
 8b771aceac0b43ff8f93b3bd4b6a40ea *Meta/Rd.rds
@@ -6,7 +6,7 @@ bb38d60fdc799f700b0f8537f9fc4110 *LICENSE
 3cbda389cae8865f8695859878454f71 *Meta/hsearch.rds
 af26401eb7ebb8f896c7dcea67268569 *Meta/links.rds
 81c85a009245c6f71a589b4c5559553b *Meta/nsInfo.rds
-72c56d9f529c102b92baa0d8e377a5c7 *Meta/package.rds
+bdd3fbd2e8724d66edfe9843f7a26e55 *Meta/package.rds
 5ae3013a5bcc115e7832c3bf993e6ce6 *Meta/vignette.rds
 b29d26a3acc8fc3be7b570b00281774d *NAMESPACE
 44c69d677da4b4ca0ded4029fe6412a1 *NEWS.md
@@ -45,12 +45,12 @@ c3978703d8f40f2679795335715e98f4 *help/figures/lifecycle-experimental.svg
 25e2f330cc7176f22ad3cc5a3ba4dc22 *help/figures/sizes-recycling.png
 0c3de09d34b6b7e94e7671c08e9df3f8 *help/figures/vec-count-deps.png
 2995e7508f8f053600f8e21cec6b60c3 *help/figures/vec-count-deps.svg
-0131104c8b06d015e774930848b55f7d *help/paths.rds
-e39601b3dd42c353e60385198b14c2e1 *help/vctrs.rdb
-08ce1a8271b8e5fcede36bb9039414b8 *help/vctrs.rdx
+7e98dc1769976ecb349fd7829a516143 *help/paths.rds
+0ec6ef1daf10f0b256de5461cacf1918 *help/vctrs.rdb
+7da1269168c4f78850ae04a2f86d444e *help/vctrs.rdx
 fc9ffd99e8fccd691e185871a815893c *html/00Index.html
 8b9362669af13540a86a3ac6cf22f99d *html/R.css
 23d206cd5b3ad3c4a357ddb6551fcd35 *include/vctrs.c
 67efd743e1f714d4fdb6a27898469147 *include/vctrs.h
 999114383d32326f4b977a0c952b2201 *libs/x64/symbols.rds
-cd7c216e8b802672c5897fe92c6c30d2 *libs/x64/vctrs.dll
+495f3c092d8f694528662c62fbd91053 *libs/x64/vctrs.dll

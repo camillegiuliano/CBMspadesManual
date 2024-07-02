@@ -12,7 +12,7 @@
 <div style="text-align: center;">
 <a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
 <a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
-</div><h2>Documentation for package &lsquo;Require&rsquo; version 0.1.6.9015</h2>
+</div><h2>Documentation for package &lsquo;Require&rsquo; version 0.3.1.9092</h2>
 
 <ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
 <li><a href="../NEWS">Package NEWS</a>.</li>
@@ -24,24 +24,42 @@
 <table style="width: 100%;">
 <tr><td style="width: 25%;"><a href="Require.html">Require-package</a></td>
 <td>Require: Installing and Loading R Packages for Reproducible Workflows</td></tr>
-<tr><td style="width: 25%;"><a href="availableVersions.html">archiveVersionsAvailable</a></td>
-<td>Available and archived versions</td></tr>
+<tr><td style="width: 25%;"><a href="dot-downloadFileMasterMainAuth.html">.downloadFileMasterMainAuth</a></td>
+<td>GITHUB_PAT-aware and 'main'-'master'-aware download from GitHub</td></tr>
 <tr><td style="width: 25%;"><a href="availableVersions.html">available.packagesCached</a></td>
 <td>Available and archived versions</td></tr>
 <tr><td style="width: 25%;"><a href="availablePackagesOverride.html">availablePackagesOverride</a></td>
 <td>Create a custom "available.packages" object</td></tr>
 <tr><td style="width: 25%;"><a href="availableVersionOK.html">availableVersionOK</a></td>
-<td>Needs VersionOnRepos, versionSpec and inequality columns</td></tr>
+<td>Needs 'VersionOnRepos', 'versionSpec' and 'inequality' columns</td></tr>
+<tr><td style="width: 25%;"><a href="checkLibPaths.html">checkLibPaths</a></td>
+<td>Creates the directories, and adds version number</td></tr>
 <tr><td style="width: 25%;"><a href="checkPath.html">checkPath</a></td>
 <td>Check directory path</td></tr>
 <tr><td style="width: 25%;"><a href="checkPath.html">checkPath-method</a></td>
 <td>Check directory path</td></tr>
+<tr><td style="width: 25%;"><a href="clearRequire.html">clearRequirePackageCache</a></td>
+<td>Clear Require Cache elements</td></tr>
+<tr><td style="width: 25%;"><a href="dealWithMissingLibPaths.html">dealWithMissingLibPaths</a></td>
+<td>Only checks for deprecated libPath argument (singular)</td></tr>
 <tr><td style="width: 25%;"><a href="DESCRIPTION-helpers.html">DESCRIPTIONFileOtherV</a></td>
 <td>GitHub package tools</td></tr>
 <tr><td style="width: 25%;"><a href="DESCRIPTION-helpers.html">DESCRIPTIONFileVersionV</a></td>
 <td>GitHub package tools</td></tr>
 <tr><td style="width: 25%;"><a href="detachAll.html">detachAll</a></td>
 <td>Detach and unload all packages</td></tr>
+<tr><td style="width: 25%;"><a href="availableVersions.html">dlArchiveVersionsAvailable</a></td>
+<td>Available and archived versions</td></tr>
+<tr><td style="width: 25%;"><a href="DESCRIPTION-helpers.html">dlGitHubDESCRIPTION</a></td>
+<td>GitHub package tools</td></tr>
+<tr><td style="width: 25%;"><a href="doLibPaths.html">doLibPaths</a></td>
+<td>Deals with missing libPaths arg, and takes first</td></tr>
+<tr><td style="width: 25%;"><a href="envPkgCreate.html">envPkgCreate</a></td>
+<td>1st level -&gt; create the .pkgEnv object in Require</td></tr>
+<tr><td style="width: 25%;"><a href="envPkgDepDepsCreate.html">envPkgDepDepsCreate</a></td>
+<td>3rd level for deps #############################################</td></tr>
+<tr><td style="width: 25%;"><a href="envPkgDepDESCFileCreate.html">envPkgDepDESCFileCreate</a></td>
+<td>3rd level for DESCRIPTIONFile</td></tr>
 <tr><td style="width: 25%;"><a href="extractPkgName.html">extractInequality</a></td>
 <td>Extract info from package character strings</td></tr>
 <tr><td style="width: 25%;"><a href="extractPkgName.html">extractPkgGitHub</a></td>
@@ -50,16 +68,20 @@
 <td>Extract info from package character strings</td></tr>
 <tr><td style="width: 25%;"><a href="extractPkgName.html">extractVersionNumber</a></td>
 <td>Extract info from package character strings</td></tr>
-<tr><td style="width: 25%;"><a href="DESCRIPTION-helpers.html">getGitHubDESCRIPTION</a></td>
-<td>GitHub package tools</td></tr>
+<tr><td style="width: 25%;"><a href="linkOrCopy.html">fileRenameOrMove</a></td>
+<td>Create link to file, falling back to making a copy if linking fails.</td></tr>
+<tr><td style="width: 25%;"><a href="getDeps.html">getDeps</a></td>
+<td>The 'packages' argument may have up to 4 pieces of information for GitHub packages: name, repository, branch, version. For CRAN-alikes, it will only be 2 pieces: name, version. There can also be an inequality or equality, if there is a version.</td></tr>
 <tr><td style="width: 25%;"><a href="getOptionRPackageCache.html">getOptionRPackageCache</a></td>
 <td>Get the option for 'Require.RPackageCache'</td></tr>
-<tr><td style="width: 25%;"><a href="Require-internals.html">getPkgVersions</a></td>
-<td>Internals used by 'Require'</td></tr>
 <tr><td style="width: 25%;"><a href="RequireOptions.html">getRequireOptions</a></td>
 <td>'Require' options</td></tr>
+<tr><td style="width: 25%;"><a href="Require.html">Install</a></td>
+<td>Require: Installing and Loading R Packages for Reproducible Workflows</td></tr>
 <tr><td style="width: 25%;"><a href="invertList.html">invertList</a></td>
 <td>Invert a 2-level list</td></tr>
+<tr><td style="width: 25%;"><a href="joinToAvailablePackages.html">joinToAvailablePackages</a></td>
+<td>Join a data.table with a 'Package' column to 'available.packages'</td></tr>
 <tr><td style="width: 25%;"><a href="linkOrCopy.html">linkOrCopy</a></td>
 <td>Create link to file, falling back to making a copy if linking fails.</td></tr>
 <tr><td style="width: 25%;"><a href="messageVerbose.html">messageDF</a></td>
@@ -81,19 +103,21 @@
 <tr><td style="width: 25%;"><a href="GitHubTools.html">parseGitHub</a></td>
 <td>Parse a github package specification</td></tr>
 <tr><td style="width: 25%;"><a href="pkgDep.html">pkgDep</a></td>
-<td>Determine package dependencies</td></tr>
+<td>Reverse package depends</td></tr>
 <tr><td style="width: 25%;"><a href="pkgDep.html">pkgDep2</a></td>
-<td>Determine package dependencies</td></tr>
+<td>Reverse package depends</td></tr>
+<tr><td style="width: 25%;"><a href="pkgDepEnv.html">pkgDepEnv</a></td>
+<td>2nd level</td></tr>
 <tr><td style="width: 25%;"><a href="pkgDepIfDepRemoved.html">pkgDepIfDepRemoved</a></td>
 <td>Package dependencies when one or more packages removed</td></tr>
 <tr><td style="width: 25%;"><a href="pkgDep.html">pkgDepTopoSort</a></td>
-<td>Determine package dependencies</td></tr>
+<td>Reverse package depends</td></tr>
 <tr><td style="width: 25%;"><a href="pkgSnapshot.html">pkgSnapshot</a></td>
 <td>Take a snapshot of all the packages and version numbers</td></tr>
 <tr><td style="width: 25%;"><a href="pkgSnapshot.html">pkgSnapshot2</a></td>
 <td>Take a snapshot of all the packages and version numbers</td></tr>
-<tr><td style="width: 25%;"><a href="rCurrentVersion.html">rCurrentVersion</a></td>
-<td>Get or compare current R version to a known version</td></tr>
+<tr><td style="width: 25%;"><a href="purgeCache.html">purgeCache</a></td>
+<td>Purge everything in the Require cache</td></tr>
 <tr><td style="width: 25%;"><a href="Require.html">Require</a></td>
 <td>Require: Installing and Loading R Packages for Reproducible Workflows</td></tr>
 <tr><td style="width: 25%;"><a href="RequireCacheDir.html">RequireCacheDir</a></td>
@@ -102,6 +126,8 @@
 <td>'Require' options</td></tr>
 <tr><td style="width: 25%;"><a href="RequireCacheDir.html">RequirePkgCacheDir</a></td>
 <td>Path to (package) cache directory</td></tr>
+<tr><td style="width: 25%;"><a href="rmBase.html">rmBase</a></td>
+<td>Recursive function to remove '.basePkgs'</td></tr>
 <tr><td style="width: 25%;"><a href="rversions.html">rversions</a></td>
 <td>R versions</td></tr>
 <tr><td style="width: 25%;"><a href="setdiffNamed.html">setdiffNamed</a></td>
@@ -116,13 +142,17 @@
 <td>Setup a project library, cache, options</td></tr>
 <tr><td style="width: 25%;"><a href="sourcePkgs.html">sourcePkgs</a></td>
 <td>A list of R packages that should likely be installed from Source, not Binary</td></tr>
+<tr><td style="width: 25%;"><a href="splitKeepOrderAndDTIntegrity.html">splitKeepOrderAndDTIntegrity</a></td>
+<td>'split' for a data.table that keeps integrity of a column of lists of data.table objects</td></tr>
+<tr><td style="width: 25%;"><a href="sysInstallAndDownload.html">sysInstallAndDownload</a></td>
+<td>download.files or install.packages in a separate process</td></tr>
 <tr><td style="width: 25%;"><a href="tempdir2.html">tempdir2</a></td>
 <td>Make a temporary (sub-)directory</td></tr>
 <tr><td style="width: 25%;"><a href="tempfile2.html">tempfile2</a></td>
 <td>Make a temporary subfile in a temporary (sub-)directory</td></tr>
 <tr><td style="width: 25%;"><a href="trimVersionNumber.html">trimVersionNumber</a></td>
 <td>Trim version number off a compound package name</td></tr>
-<tr><td style="width: 25%;"><a href="useLinuxSourceCache.html">useLinuxSourceCache</a></td>
-<td>Use cache for R package compilation</td></tr>
+<tr><td style="width: 25%;"><a href="updatePackages.html">updatePackages</a></td>
+<td>Update installed packages with latest available versions</td></tr>
 </table>
 </div></body></html>

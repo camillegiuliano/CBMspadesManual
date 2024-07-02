@@ -7,7 +7,7 @@
 <title>Chapter 2 CBM_defaults | CBM Spades Manual</title>
 <meta name="author" content="">
 <meta name="description" content="2.1 Overview This module can run independently by running the global script below. Its main task is to read-in all the default values in SpaDES-CBM which is akin to the ArchiveIndex in CBM-CFS3...">
-<meta name="generator" content="bookdown 0.39 with bs4_book()">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
 <meta property="og:title" content="Chapter 2 CBM_defaults | CBM Spades Manual">
 <meta property="og:type" content="book">
 <meta property="og:description" content="2.1 Overview This module can run independently by running the global script below. Its main task is to read-in all the default values in SpaDES-CBM which is akin to the ArchiveIndex in CBM-CFS3...">
@@ -115,7 +115,7 @@ Its main task is to read-in all the default values in SpaDES-CBM which is akin t
 <span><span class="va">outDefaults</span> <span class="op">&lt;-</span> <span class="fu">spades</span><span class="op">(</span><span class="va">myDefaults</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># The spades call should make a "dataset" class object</span></span>
-<span><span class="fu">testthat</span><span class="fu">::</span><span class="fu">expect_true</span><span class="op">(</span><span class="fu">is</span><span class="op">(</span><span class="va">outSim</span><span class="op">@</span><span class="va">.envir</span><span class="op">$</span><span class="va">cbmData</span>, <span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html">expect_true</a></span><span class="op">(</span><span class="fu">is</span><span class="op">(</span><span class="va">outSim</span><span class="op">@</span><span class="va">.envir</span><span class="op">$</span><span class="va">cbmData</span>, <span class="st">"dataset"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="events" class="section level2" number="2.3">
 <h2>

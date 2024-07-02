@@ -1,22 +1,48 @@
+.downloadFileMasterMainAuth
+                        GITHUB_PAT-aware and 'main'-'master'-aware
+                        download from GitHub
 DESCRIPTIONFileVersionV
                         GitHub package tools
 Require-package         Require: Installing and Loading R Packages for
                         Reproducible Workflows
 RequireCacheDir         Path to (package) cache directory
 RequireOptions          'Require' options
-archiveVersionsAvailable
-                        Available and archived versions
 availablePackagesOverride
                         Create a custom "available.packages" object
-availableVersionOK      Needs VersionOnRepos, versionSpec and
-                        inequality columns
+availableVersionOK      Needs 'VersionOnRepos', 'versionSpec' and
+                        'inequality' columns
+checkLibPaths           Creates the directories, and adds version
+                        number
 checkPath               Check directory path
+clearRequirePackageCache
+                        Clear Require Cache elements
+dealWithMissingLibPaths
+                        Only checks for deprecated libPath argument
+                        (singular)
 detachAll               Detach and unload all packages
+dlArchiveVersionsAvailable
+                        Available and archived versions
+doLibPaths              Deals with missing libPaths arg, and takes
+                        first
+envPkgCreate            1st level -> create the .pkgEnv object in
+                        Require
+envPkgDepDESCFileCreate
+                        3rd level for DESCRIPTIONFile
+envPkgDepDepsCreate     3rd level for deps
+                        #############################################
 extractPkgName          Extract info from package character strings
+getDeps                 The 'packages' argument may have up to 4 pieces
+                        of information for GitHub packages: name,
+                        repository, branch, version. For CRAN-alikes,
+                        it will only be 2 pieces: name, version. There
+                        can also be an inequality or equality, if there
+                        is a version.
 getOptionRPackageCache
                         Get the option for 'Require.RPackageCache'
-getPkgVersions          Internals used by 'Require'
 invertList              Invert a 2-level list
+joinToAvailablePackages
+                        Join a data.table with a 'Package' column to
+                        'available.packages'
 linkOrCopy              Create link to file, falling back to making a
                         copy if linking fails.
 messageDF               Use message to print a clean square data
@@ -25,13 +51,14 @@ modifyList2             'modifyList' for multiple lists
 normPath                Normalize filepath
 paddedFloatToChar       Convert numeric to character with padding
 parseGitHub             Parse a github package specification
-pkgDep                  Determine package dependencies
+pkgDepEnv               2nd level
 pkgDepIfDepRemoved      Package dependencies when one or more packages
                         removed
+pkgDepTopoSort          Reverse package depends
 pkgSnapshot             Take a snapshot of all the packages and version
                         numbers
-rCurrentVersion         Get or compare current R version to a known
-                        version
+purgeCache              Purge everything in the Require cache
+rmBase                  Recursive function to remove '.basePkgs'
 rversions               R versions
 setLibPaths             Set '.libPaths'
 setLinuxBinaryRepo      Setup for binary Linux repositories
@@ -39,8 +66,14 @@ setdiffNamed            Like 'setdiff', but takes into account names
 setup                   Setup a project library, cache, options
 sourcePkgs              A list of R packages that should likely be
                         installed from Source, not Binary
+splitKeepOrderAndDTIntegrity
+                        'split' for a data.table that keeps integrity
+                        of a column of lists of data.table objects
+sysInstallAndDownload   download.files or install.packages in a
+                        separate process
 tempdir2                Make a temporary (sub-)directory
 tempfile2               Make a temporary subfile in a temporary
                         (sub-)directory
 trimVersionNumber       Trim version number off a compound package name
-useLinuxSourceCache     Use cache for R package compilation
+updatePackages          Update installed packages with latest available
+                        versions
