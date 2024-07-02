@@ -1,0 +1,746 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="generator" content="r-universe/pandoc">
+      <meta name="author" content="Eliot McIntire">
+      
+      <title>Getting Started</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" data-external="1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" data-external="1">
+      <link rel="stylesheet" href="https://r-universe.dev/static/article-styles.css" data-external="1">
+   </head>
+   <body>
+      <div class="container" id="topcontainer">
+         <script>if (window.self != window.top) try {document.getElementById('topcontainer').className = "container-fluid article-in-iframe"; } catch(e) {}</script>
+         <h1 class="title">Getting Started</h1>
+                  <div class="row">
+            <div class="col-xl-10"><p><code>SpaDES</code> is a
+collection of R packages designed to provide a flexible framework for
+ecological analysis, simulations, forecasting, and other ecological
+tasks. At its core, a <code>SpaDES</code> analysis revolves around the
+concept of a “module” - a self-contained unit of code that performs a
+specific function and includes both machine-readable and human-readable
+metadata. In a typical <code>SpaDES</code> project, users often employ
+multiple modules, whether they’ve authored them or they’ve been
+contributed by others. This scalability introduces several challenges,
+including managing file paths (e.g., for data inputs, outputs, figures,
+modules, and packages), handling package dependencies, and coordinating
+the development of multiple modules simultaneously. While it is possible
+to develop a <code>SpaDES</code> project using methods familiar to the
+user, the <code>SpaDES.project</code> package streamlines this process,
+facilitating a clean, reproducible and reusable project setup for any
+project. Default settings ensure that project files and packages are
+kept isolated, preventing potential conflicts with other projects on the
+same computer.</p>
+<p>In the following section, we present a range of examples showcasing
+the utilization of the <code>setupProject()</code> function. To ensure a
+smooth understanding of these examples, we will begin by discussing the
+necessary prerequisites.</p>
+<div id="setting-up-prerequisites-installing-system-dependencies-r-and-rstudio" class="section level1">
+<h1>Setting Up Prerequisites: Installing System Dependencies, R, and
+RStudio</h1>
+<p>To get started, users should have already installed R, RStudio, and
+possibly other system-level dependencies. <a href="iv-Installing-R.html">See vignette here</a></p>
+<p>Now that we’ve established the prerequisites, let’s explore various
+examples of how to use the <code>setupProject()</code> function, ranging
+from simple to moderately complex scenarios. We will start by installing
+the package.</p>
+</div>
+<div id="installing-spades.project" class="section level1">
+<h1>Installing <code>SpaDES.project</code></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;SpaDES.project&quot;</span>)) {</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  {<span class="fu">install.packages</span>(<span class="st">&quot;SpaDES.project&quot;</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&quot;predictiveecology.r-universe.dev&quot;</span>, <span class="fu">getOption</span>(<span class="st">&quot;repos&quot;</span>)))</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   <span class="fu">require</span>(<span class="st">&quot;SpaDES.project&quot;</span>)}</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="understanding-spades.projects-main-function-setupproject" class="section level1">
+<h1>Understanding <code>SpaDES.project</code>’s Main Function:
+<code>setupProject()</code></h1>
+<p>For more details, see <code>?setupProject</code>, especially for
+argument-specific descriptions.</p>
+<div id="function-objectives" class="section level2">
+<h2>Function objectives</h2>
+<p>The primary five objectives of this function are:</p>
+<p><strong>1. Preparation for
+<code>SpaDES.core::simInit</code>:</strong> This functions is designed
+to set the stage for a smooth transition into
+<code>SpaDES.core::simInit</code>, i.e., the initiation of a collection
+of SpaDES modules. After a <code>out &lt;- setupProject()</code> call,
+the return can be passed directly to
+<code>do.call(SpaDES.core::simInitAndSpades, out)</code>.</p>
+<p><strong>2. Simplicity for Beginners, Versatility for
+Experts:</strong> The functions are crafted to be approachable for
+beginners, offering simplicity, while at the same time, providing the
+power and flexibility needed to address the demands of highly intricate
+projects, all within the same structural framework.</p>
+<p><strong>3. Handling Package Complexity:</strong> These functions
+address the complexities associated with R package installation and
+loading, especially when working with modules created by various
+users.</p>
+<p><strong>4. Creating a Standardized Project Structure:</strong> They
+facilitate the establishment of a consistent SpaDES project structure.
+This uniformity eases the transition from one project to another,
+regardless of project complexity, promoting a seamless and efficient
+workflow.</p>
+<p><strong>5. Minimizing .GlobalEnv Assignments:</strong> An important
+goal is to encourage best practices by reducing the need for assignments
+to the .GlobalEnv. This practice fosters clean, maintainable code that
+remains reproducible even as project complexity grows.</p>
+</div>
+<div id="function-tasks" class="section level2">
+<h2>Function Tasks</h2>
+<p>This function performs a variety of tasks to set up a SpaDES project
+by assigning values to these arguments:</p>
+<ul>
+<li><code>paths</code> - A standardized set of paths.</li>
+<li><code>modules</code> - Either downloads them from a cloud repository
+or user identifies local ones.</li>
+<li><code>packages</code> - To install and/or load (using the
+<code>require</code> argument) packages not already identified in the
+metadata of the <code>modules</code>.</li>
+<li><code>params</code> - For setting parameter values for any of the
+<code>modules</code>.</li>
+<li><code>options</code> - To configure basic <code>R</code>
+<code>options</code>.</li>
+</ul>
+<p>More specifically, this function orchestrates a series of operations
+in the following order: <code>setupPaths</code>,
+<code>setupModules</code>, <code>setupPackages</code>,
+<code>setupOptions</code>, <code>setupSideEffects</code>,
+<code>setupParams</code>, and <code>setupGitIgnore</code>. This sequence
+accomplishes several tasks, including the creation of folder structures,
+installation of missing packages listed in either the
+<code>packages</code> or <code>require</code> arguments, loading of
+packages (limited to those specified in the <code>require</code>
+argument), configuration of options, and the download or validation of
+modules. Additionally, it returns elements that can be directly passed
+to <code>simInit</code> or <code>simInitAndSpades</code>, specifically
+modules, params, paths, times, and any named elements passed to …
+(<code>Dots</code>). If desired, this function can also modify the
+<code>.Rprofile</code> file for the project, ensuring that each time the
+project is opened, it adopts specific <code>.libPaths()</code>.</p>
+<p>This sequence allows users to leverage settings (i.e., objects) that
+are established before others. More on this below (section <a href="#what-makes-this-function-so-special">What Makes this Function so
+Special</a>).</p>
+<p>For user convenience, there are several auxiliary elements, as
+described in the help file of the function:
+<code>?setupProject()</code>.</p>
+<p>The output from <code>setupProject()</code> is a list containing
+several named elements. These elements are designed to be passed
+directly to <code>simInit</code> to initialize a <code>simList</code>
+and, potentially, a <code>spades</code> call.</p>
+</div>
+</div>
+<div id="what-makes-this-function-so-special" class="section level1">
+<h1>What Makes this Function so Special</h1>
+<p>In addition to its capability to specify paths, options, and
+parameters for the entire simulation or workflow, regardless of the
+modules used, this function offers three distinct advantages that
+enhance its convenience, detailed below:</p>
+<p><em>1. Versatile Argument Types:</em> Arguments can be provided as
+both values and/or URLs, allowing flexibility in how information is
+sourced and integrated into the setup.</p>
+<p><em>2. Sequential Argument Processing:</em> Arguments are sourced in
+a sequential manner during function evaluation. This sequential
+processing enables a logical flow and great flexibility in setting up
+the project.</p>
+<p><em>3. Handling Missing Values:</em> The function accommodates
+missing values gracefully, making it adaptable to various project
+scenarios where certain parameters or information may not be yet
+available.</p>
+<div id="versatile-argument-types" class="section level2">
+<h2><strong>1. Versatile Argument Types</strong></h2>
+<p>The first important advantage of <code>setupProject()</code> is the
+type of inputs for arguments it can take, which can be lists of, and/or
+paths. For most arguments, the values can be either named lists or
+character vectors consisting of strings ending in <code>.R</code>,
+representing <code>urls</code> to cloud or local R scripts to be
+sourced. More specifically, the function arguments <code>paths</code>,
+<code>options</code>, and <code>params</code>, can all understand lists
+of named values, character vectors, or a mixture by using a list where
+named elements are values and unnamed elements are character
+strings/vectors. <em>Any unnamed character string/vector will be treated
+as a file path.</em> If that file path has an @ symbol, it will be
+assumed to be a file that exists on ⁠<a href="https://github.com" class="uri">https://github.com</a>. So a user can pass values, or
+pointers to remote and/or local paths that, themselves, have values.</p>
+<p>The following will set an option as declared (i.e.,
+<code>reproducible.useTerra = TRUE</code>), plus read the local
+<code>inst/options.R</code> file (with relative path), plus download and
+read the cloud-hosted
+<code>PredictiveEcology/SpaDES.project@transition/inst/options.R</code>
+file.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">reproducible.useTerra =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                 <span class="st">&quot;inst/options.R&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                 <span class="st">&quot;PredictiveEcology/SpaDES.project@transition/inst/options.R&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  )</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">attr</span>(out, <span class="st">&quot;projectOptions&quot;</span>)</span></code></pre></div>
+<p>This approach allows for an organic growth of complexity, e.g., a
+user begins with only named lists of values, but then as the number of
+values increases, it may be helpful for clarity to put some in an
+external file.</p>
+</div>
+<div id="sequential-argument-processing" class="section level2">
+<h2><strong>2. Sequential Argument Processing</strong></h2>
+<p>The second important advantage of <code>setupProject()</code>,
+briefly mentioned above, is that argument values within each of the
+function arguments are sourced in a sequential manner. This implies that
+a prior value can be leveraged by a subsequent one <em>within the same
+function call</em>. For example, users can set paths, and subsequently,
+employ the paths list to configure options that can update or modify
+paths as needed. Similarly, users can set times and apply the times list
+for specific entries in the parameters (<code>params</code>)
+configuration. For instance, consider the following example, where
+<code>projectPath</code> is included as part of the list assigned to the
+<code>paths</code> argument. This value is then utilized in the
+subsequent list element:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>lalahere <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># &#39;dataPath&#39; is defined based on the previous argument &#39;outputPath&#39; in the same function call.</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">setupPaths</span>(<span class="at">paths =</span> <span class="fu">list</span>(<span class="at">projectPath =</span> <span class="st">&quot;here&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                        <span class="at">outputPath =</span> <span class="st">&quot;outs&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                        <span class="at">dataPath =</span> <span class="fu">file.path</span>(paths[[<span class="st">&quot;outputPath&quot;</span>]], <span class="st">&quot;data&quot;</span>)))</span></code></pre></div>
+<p>Because of such sequential evaluation, the content with R scripts can
+be sequential lists, and also the arguments can themselves be
+sequential. This creates a hierarchy specified by the order. In this
+fairly rich example, a user can first create a set of default options in
+a file, then custom elements, then a list of more changes protected by
+an ⁠if
+<code>(user(&quot;userNamer&quot;)). In the following example,</code>setupOptions<code>will first parse the file (</code>inst/options.R<code>), maintaining an active named list of options that will be set (lets call that</code>opts<code>), then it will</code>modifyList(opts,
+list(maxMemory =
+6e+10))<code>, i.e., modify the list with a new value, then if the user is &quot;emcintir&quot;, it will further modify the</code>opts<code>list. Finally, because this is</code>setupOptions<code>, it will call</code>options(opts)`
+with the new list values:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">save</span>(origWorkingDir, lalahere, origLibPath, origGetWd, <span class="at">file =</span> <span class="st">&quot;/home/emcintir/getwd.rda&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">setupOptions</span>(<span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="st">&quot;inst/options.R&quot;</span>,                     <span class="co"># many items set because this is a file; has &quot;future.globals.maxSize&quot; = 5.24288e8</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="at">future.globals.maxSize =</span> <span class="fl">4e8</span>,         <span class="co"># this value overrides first, because it is 2nd</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">user</span>(<span class="st">&quot;emcintir&quot;</span>))                  <span class="co"># an &quot;if&quot; statement is OK --&gt; but must use list after</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">future.globals.maxSize =</span> <span class="fl">6e8</span>)  <span class="co"># conditional on user, value is overridden again</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>))</span></code></pre></div>
+</div>
+<div id="handling-missing-values" class="section level2">
+<h2><strong>3. Handling Missing Values</strong></h2>
+<p>To facilitate batch submission, users can specify arguments in the
+form of <code>argument = value</code>, even when <code>value</code> is
+missing (i.e., not previously defined in the Environment). This
+unconventional approach may not typically work with standard argument
+parsing, but it has been specifically designed to function within this
+context. For instance, in the following example, you can specify
+<code>.mode = .mode</code>. If R cannot find a valid value for
+<code>.mode</code> on the right-hand side, it will gracefully skip
+without raising an error. This feature enables users to source a script
+with the following line from a batch script where <code>.mode</code> is
+specified. When running this line separately, without the batch script
+specification, <code>.mode</code> will have no value assigned to it.
+Additionally, we include <code>.nodes</code> as an example of passing a
+value that does exist. In the output, the non-existent
+<code>.mode</code> will be returned as an unevaluated, captured list
+element:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>.nodes <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>out <span class="ot">&lt;-</span> SpaDES.project<span class="sc">::</span><span class="fu">setupProject</span>(<span class="at">.mode =</span> .mode,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                                    <span class="at">.nodes =</span> .nodes)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; Warning: .mode</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; Error in eval(val, envir = frm) : object &#39;.mode&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>out[<span class="fu">c</span>(<span class="st">&quot;.mode&quot;</span>, <span class="st">&quot;.nodes&quot;</span>)]</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt; $.mode</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;.mode\n&quot;                                                     </span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; [2] &quot;Error in eval(val, envir = frm) : object &#39;.mode&#39; not found\n&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; $.nodes</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+</div>
+</div>
+<div id="relationship-between-setupproject-and-spades.coresiminit-call" class="section level1">
+<h1>Relationship between <code>setupProject()</code> and
+<code>SpaDES.core::simInit</code> Call</h1>
+<p>The output from <code>setupProject()</code> is a list containing
+several named elements. These elements are designed to be passed
+directly to <code>simInit</code> to initialize a <code>simList</code>
+and, potentially, a <code>spades</code> call. Every
+<code>setupProject</code> call can be used with <code>do.call</code> to
+pass arguments to a <code>simInit</code> or
+<code>simInitAndSpades</code> call.</p>
+<pre><code>sim &lt;- setupProject() |&gt; do.call(what = SpaDES.core::simInitAndSpades)
+
+## or
+out &lt;- setupProject()
+sim = do.call(SpaDES.core::simInitAndSpades, out)
+</code></pre>
+</div>
+<div id="see-also" class="section level1">
+<h1>See Also</h1>
+<p>In R, checkout the help files for other functions such as:
+<code>?setupPaths</code> <code>?setupOptions</code>
+<code>?setupPackages</code> <code>?setupModules</code>
+<code>?setupGitIgnore</code></p>
+<p>Other helpful functions that are worse going though are
+<code>?user</code>, <code>?machine</code>, and <code>?node</code>.</p>
+</div>
+<div id="examples-of-usage-of-setupproject" class="section level1">
+<h1>Examples of usage of <code>setupProject()</code></h1>
+<div id="get-modules-from-github" class="section level2">
+<h2>Get modules from GitHub</h2>
+<p>This will retrieve the module as specified, and place it in
+<code>modulePath</code>, which is unspecified here, thus taking the
+default. This specification will not re-download the file if it exists
+locally, with a message indicating this each time. This specification
+will also automatically install all missing packages that are in
+<code>reqdPkgs</code> metadata of the module(s). NOTE: we can omit this
+package installation step by specifying <code>package = NULL</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="at">modules =</span> <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="at">packages =</span> <span class="cn">NULL</span> <span class="co"># for this example, skip installation of packages; normally don&#39;t do this</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="paths" class="section level2">
+<h2>Paths</h2>
+<p>All paths are relative to the <code>projectPath</code>, except for 2
+specific exceptions: <code>packagePath</code> is not placed within the
+<code>projectPath</code> and all “scratch” i.e., “temporary” folders,
+are place in a subfolder of <code>tempdir()</code>.
+<code>packagePath</code> is placed in the
+<code>tools::R_user_dir(name)</code> folder, which is project specific,
+but does not clutter the <code>projectPath</code> with hundreds of
+folders that can interfere with many user actions especially in Rstudio.
+For example, “Find in Files” will take much longer (especially on
+Windows) if all the package files are in the <code>projectPath</code>
+(there are ways around this, but they require custom setups).</p>
+<p>In this example, <code>modulePath</code> will be set to
+<code>file.path(packagePath, modulePath)</code>; since
+<code>packagePath</code> is unspecified, <code>setupProject</code>
+assumes the current directory is the desired root of the project.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">library</span>(SpaDES.project)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">setupProject</span>(<span class="at">paths =</span> <span class="fu">list</span>(<span class="at">modulePath =</span> <span class="st">&quot;myModules&quot;</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; $modules</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; named list()</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; $paths</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; $paths$cachePath</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/cache&quot;</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; $paths$inputPath</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/inputs&quot;</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; $paths$modulePath</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/myModules&quot;</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt; $paths$outputPath</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/outputs&quot;</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; $paths$rasterPath</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmp1gUPW6/SpaDES.project/raster&quot;</span></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; $paths$scratchPath</span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmp1gUPW6/SpaDES.project&quot;</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt; $paths$terraPath</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmp1gUPW6/SpaDES.project/terra&quot;</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)</span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)$packagePath</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/github/home/.local/share/R/SpaDES.project/packages/x86_64-pc-linux-gnu/4.4&quot;</span></span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)$projectPath</span></span>
+<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project&quot;</span></span>
+<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)$.previousLibPaths</span></span>
+<span id="cb9-36"><a href="#cb9-36" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/github/home/.local/share/R/SpaDES.project/packages/x86_64-pc-linux-gnu/4.4&quot;</span></span>
+<span id="cb9-37"><a href="#cb9-37" tabindex="-1"></a><span class="co">#&gt; [2] &quot;/usr/lib/R/library&quot;                                                         </span></span>
+<span id="cb9-38"><a href="#cb9-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-39"><a href="#cb9-39" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-40"><a href="#cb9-40" tabindex="-1"></a><span class="co">#&gt; $params</span></span>
+<span id="cb9-41"><a href="#cb9-41" tabindex="-1"></a><span class="co">#&gt; $params$.globals</span></span>
+<span id="cb9-42"><a href="#cb9-42" tabindex="-1"></a><span class="co">#&gt; $params$.globals$.studyAreaName</span></span>
+<span id="cb9-43"><a href="#cb9-43" tabindex="-1"></a><span class="co">#&gt; [1] &quot;SpaDES.project&quot;</span></span>
+<span id="cb9-44"><a href="#cb9-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-45"><a href="#cb9-45" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-46"><a href="#cb9-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-47"><a href="#cb9-47" tabindex="-1"></a><span class="co">#&gt; $times</span></span>
+<span id="cb9-48"><a href="#cb9-48" tabindex="-1"></a><span class="co">#&gt; $times$start</span></span>
+<span id="cb9-49"><a href="#cb9-49" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb9-50"><a href="#cb9-50" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-51"><a href="#cb9-51" tabindex="-1"></a><span class="co">#&gt; $times$end</span></span>
+<span id="cb9-52"><a href="#cb9-52" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+</div>
+<div id="default-values" class="section level2">
+<h2>Default values</h2>
+<p>One compelling reason to use <code>setupProject()</code> is the
+availability of numerous default values that can be leveraged, leading
+to cleaner and more concise code in many instances. This code sets all
+default values for <code>paths</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(SpaDES.project)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">setupProject</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; $modules</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; named list()</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; $paths</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; $paths$cachePath</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/cache&quot;</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; $paths$inputPath</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/inputs&quot;</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt; $paths$modulePath</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/modules&quot;</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; $paths$outputPath</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project/outputs&quot;</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; $paths$rasterPath</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmp1gUPW6/SpaDES.project/raster&quot;</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; $paths$scratchPath</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmp1gUPW6/SpaDES.project&quot;</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; $paths$terraPath</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/Rtmp1gUPW6/SpaDES.project/terra&quot;</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)$packagePath</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/github/home/.local/share/R/SpaDES.project/packages/x86_64-pc-linux-gnu/4.4&quot;</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)$projectPath</span></span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpFk3G5m/Rbuild165a369443ab/SpaDES.project&quot;</span></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;extraPaths&quot;)$.previousLibPaths</span></span>
+<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a><span class="co">#&gt; [1] &quot;/github/home/.local/share/R/SpaDES.project/packages/x86_64-pc-linux-gnu/4.4&quot;</span></span>
+<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a><span class="co">#&gt; [2] &quot;/usr/lib/R/library&quot;                                                         </span></span>
+<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a><span class="co">#&gt; $params</span></span>
+<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a><span class="co">#&gt; $params$.globals</span></span>
+<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a><span class="co">#&gt; $params$.globals$.studyAreaName</span></span>
+<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a><span class="co">#&gt; [1] &quot;SpaDES.project&quot;</span></span>
+<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="co">#&gt; $times</span></span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="co">#&gt; $times$start</span></span>
+<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="co">#&gt; $times$end</span></span>
+<span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+</div>
+<div id="arguments-sourced-sequentially" class="section level2">
+<h2>Arguments sourced sequentially</h2>
+<p>The argument values within each of the arguments are sourced
+sequentially. This means that a previous value can be utilized by a
+subsequent one.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Use the newValue in `secondValue`</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>             <span class="at">newValue =</span> <span class="dv">1</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>             <span class="at">secondValue =</span> newValue <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>out[<span class="fu">c</span>(<span class="st">&quot;newValue&quot;</span>, <span class="st">&quot;secondValue&quot;</span>)]</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; $newValue</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; $secondValue</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+</div>
+<div id="arguments-not-sourced-to-.globalenv" class="section level2">
+<h2>Arguments not sourced to .GlobalEnv</h2>
+<p>The <code>.GlobalEnv</code> in <code>R</code> is special because it
+is in the search path of any user-created function. This is very
+convenient, but also provides the potential for many problems. For
+example, a variable could be misspelled in a code chunck, but the code
+doesn’t fail because the <code>.GlobalEnv</code> has the same variable,
+spelled correctly.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Gets the wrong version of the module</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>githubRepo <span class="ot">=</span> <span class="st">&quot;PredictiveEcology/Biomass_core@development&quot;</span> <span class="co"># incorrect one -- used in error</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>             <span class="at">gitHubRepo =</span> <span class="st">&quot;PredictiveEcology/Biomass_core@main&quot;</span>, <span class="co"># The correct one --&gt; not used</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>             <span class="at">modules =</span> githubRepo,</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>             <span class="at">packages =</span> <span class="cn">NULL</span> <span class="co"># no packages for this demonstration</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>out<span class="sc">$</span>modules <span class="co"># shows @development, which is unexpected</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="with-options-and-params-set" class="section level2">
+<h2>With options and params set</h2>
+<p>We can start to increase the complexity of the
+<code>setupProject</code> call gradually. Once we have the module.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">reproducible.useTerra =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">Biomass_borealDataPrep =</span> <span class="fu">list</span>(<span class="at">.plots =</span> <span class="st">&quot;screen&quot;</span>)),</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">list</span>(<span class="at">modulePath =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>               <span class="at">projectPath =</span> <span class="st">&quot;.&quot;</span>), <span class="co"># within vignette, project dir cannot be changed; user likely will</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  <span class="at">modules =</span> <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="arguments-as-values-or-urls" class="section level2">
+<h2>Arguments as values or urls</h2>
+<p>For most arguments, the values can be either named lists or character
+vectors consisting of strings ending in <code>.R</code>, representing
+<code>urls</code> to cloud or local R scripts to be sourced. This
+flexibility enables users to begin with simple argument values and
+gradually introduce greater complexity as a project expands in
+scale.</p>
+<p>In this first example, <code>options</code> is set by parsing a file
+that is at a remote location. This file will be downloaded first, if it
+does not exist locally, then parsed from the local location.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">c</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/SpaDES.project@transition/inst/options.R&quot;</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  ),</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="at">Biomass_borealDataPrep =</span> <span class="fu">list</span>(<span class="at">.plots =</span> <span class="st">&quot;screen&quot;</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  ),</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">list</span>(<span class="at">modulePath =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>               <span class="at">projectPath =</span> <span class="st">&quot;.&quot;</span>), <span class="co"># within vignette, project dir cannot be changed; user likely will</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>  <span class="at">modules =</span> <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>)</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="setting-arbitrary-arguments-using-defaultdots" class="section level2">
+<h2>Setting arbitrary arguments, using defaultDots</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">&quot;example_5&quot;</span>, <span class="co"># puts in a folder with this name</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="at">modules =</span> <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="at">sideEffects =</span> <span class="st">&quot;PredictiveEcology/SpaDES.project@transition/inst/sideEffects.R&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="co"># if mode and studyAreaName are not available in the .GlobalEnv, then will use these</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  <span class="at">defaultDots =</span> <span class="fu">list</span>(<span class="at">mode =</span> <span class="st">&quot;development&quot;</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>                     <span class="at">studyAreaName =</span> <span class="st">&quot;MB&quot;</span>),</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  <span class="at">mode =</span> mode, <span class="co"># may not exist in the .GlobalEnv, so `setup*` will use the defaultDots above</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  <span class="at">studyAreaName =</span> studyAreaName<span class="co">#, # same as previous argument.</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="co"># params = list(&quot;Biomass_borealDataPrep&quot; = list(.useCache = mode))</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>)</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="pass-args-from-globalenv" class="section level2">
+<h2>Pass args from GlobalEnv</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>studyAreaName <span class="ot">&lt;-</span> <span class="st">&quot;AB&quot;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">list</span>(<span class="at">projectPath =</span> <span class="st">&quot;example_7&quot;</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="at">modules =</span> <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="at">defaultDots =</span> <span class="fu">list</span>(<span class="at">mode =</span> <span class="st">&quot;development&quot;</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>                     <span class="at">studyAreaName =</span> <span class="st">&quot;MB&quot;</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">&quot;development&quot;</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>  <span class="at">studyAreaName =</span> studyAreaName  <span class="co"># &lt;----- pass it here, naming it</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>)</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="mixing-argument-a-named-list-a-github-file-and-local-file" class="section level2">
+<h2>Mixing argument: a named list, a github file and local file</h2>
+<p>There are several ways to specifying an argument, as we have seen. We
+can also mix and match these ways:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>    <span class="at">reproducible.useTerra =</span> <span class="cn">TRUE</span>,                                 <span class="co"># direct argument # sets one option</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/SpaDES.project@transition/inst/options.R&quot;</span>, <span class="co"># remote file -- sets many options</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>    <span class="fu">system.file</span>(<span class="st">&quot;authentication.R&quot;</span>, <span class="at">package =</span> <span class="st">&quot;SpaDES.project&quot;</span>)   <span class="co"># local file -- sets gargle options</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  )</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="studyarea-argument" class="section level2">
+<h2><code>studyArea</code> argument</h2>
+<p><code>?setupStudyArea</code> for more details. A user can choose to
+use the internal <code>setupStudyArea</code> function, which will use
+the <code>gadm</code> global database. Setting the
+<code>studyArea</code> argument to a <code>list</code> will trigger the
+use of <code>setupStudyArea</code>.</p>
+<div id="alberta-and-british-columbia-canada" class="section level3">
+<h3>Alberta and British Columbia, Canada</h3>
+<p>In this example, we will select an area in northwestern Alberta and
+the adjacent northeastern BC, Canada. We use the internal matching,
+because we aren’t sure of the exact names: for the top level
+(<code>NAME_1</code>), we use either “Al” or “Brit”, separated by the
+“or” symbol, <code>|</code>. For the second level, we do the same, but
+specify using the names in that column. If a user does not know which
+values exist, they can not specify <code>NAME_2</code>, then visualize
+the resulting map and click on values, such as:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupStudyArea</span>(<span class="fu">list</span>(<span class="st">&quot;Al|Brit&quot;</span>, <span class="at">level =</span> <span class="dv">2</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) {</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="fu">library</span>(quickPlot)</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">dev</span>() <span class="co"># open a non-RStudio window; can&#39;t use RStudio for `clickValues` below</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="fu">Plot</span>(out)</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>  val <span class="ot">&lt;-</span> <span class="fu">clickValues</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">setupStudyArea</span>(<span class="fu">list</span>(<span class="st">&quot;Al|Brit&quot;</span>, <span class="at">level =</span> <span class="dv">2</span>, <span class="at">NAME_2 =</span> val<span class="sc">$</span>NAME_2))</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>  <span class="fu">Plot</span>(out, <span class="at">new =</span> <span class="cn">TRUE</span>) <span class="co"># need &quot;new = TRUE&quot; to clear previous map</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>}</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co"># Can pick multiple parts with partial matching</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupStudyArea</span>(<span class="fu">list</span>(<span class="st">&quot;Al|Brit&quot;</span>, <span class="at">level =</span> <span class="dv">2</span>, <span class="at">NAME_2 =</span> <span class="st">&quot;19|18|17|Peace&quot;</span>))</span></code></pre></div>
+</div>
+<div id="specify-an-epsg" class="section level3">
+<h3>Specify an <code>epsg</code></h3>
+<p>We can get the <code>studyArea</code> in a different projection if we
+specify the <code>epsg</code> code.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">&quot;example_10&quot;</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="at">studyArea =</span> <span class="fu">list</span>(<span class="st">&quot;Al|Brit|Sas&quot;</span>, <span class="at">level =</span> <span class="dv">2</span>, <span class="at">epsg =</span> <span class="st">&quot;3005&quot;</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="require-and-objects-arguments" class="section level2">
+<h2><code>require</code> and <code>objects</code> arguments</h2>
+<p>Using the <code>require</code> argument, calls
+<code>Require::Require()</code>, which <em>installs and loads</em>
+packages i.e., equivalent to <code>install.packages(...)</code> and
+<code>require(...)</code> on the named packages). <code>objects</code>
+accepts a list of arbitrary objects that will be returned at the end of
+this function call. Any code that needs executing will run, and they
+will have access to all the <code>packages</code> and
+<code>require</code> packages, plus any other arguments (e.g.,
+<code>paths</code> or other named arguments in the <code>...</code>)
+that preceded it in the call.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">list</span>(<span class="at">projectPath =</span> <span class="st">&quot;example_11&quot;</span>), <span class="co"># will deduce name of project from projectPath</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  <span class="at">standAlone =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>  <span class="at">require =</span> <span class="fu">c</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/reproducible@development (&gt;= 1.2.16.9017)&quot;</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/SpaDES.core@development (&gt;= 1.1.0.9001)&quot;</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>  ),</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">c</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_speciesData@master&quot;</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_core@master&quot;</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_validationKNN@master&quot;</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_speciesParameters@development&quot;</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a>  ),</span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a>  <span class="at">objects =</span> <span class="fu">list</span>(</span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a>    <span class="at">studyAreaLarge =</span> terra<span class="sc">::</span><span class="fu">vect</span>(</span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a>      terra<span class="sc">::</span><span class="fu">ext</span>(<span class="sc">-</span><span class="dv">598722</span>, <span class="sc">-</span><span class="dv">557858</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a>                 <span class="dv">776827</span>, <span class="dv">837385</span>),</span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a>      <span class="at">crs =</span> terra<span class="sc">::</span><span class="fu">crs</span>(<span class="st">&quot;epsg:3978&quot;</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a>    ),</span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a>    <span class="at">studyArea =</span> terra<span class="sc">::</span><span class="fu">vect</span>(</span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a>      terra<span class="sc">::</span><span class="fu">ext</span>(<span class="sc">-</span><span class="dv">598722</span>, <span class="sc">-</span><span class="dv">578177</span>,</span>
+<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a>                 <span class="dv">779252</span>, <span class="dv">809573</span>),</span>
+<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a>      <span class="at">crs =</span> terra<span class="sc">::</span><span class="fu">crs</span>(<span class="st">&quot;epsg:3978&quot;</span>)</span>
+<span id="cb20-25"><a href="#cb20-25" tabindex="-1"></a>    )</span>
+<span id="cb20-26"><a href="#cb20-26" tabindex="-1"></a>  )</span>
+<span id="cb20-27"><a href="#cb20-27" tabindex="-1"></a>)</span>
+<span id="cb20-28"><a href="#cb20-28" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb20-29"><a href="#cb20-29" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="passing-named-arguments-as-part-of-the-..." class="section level2">
+<h2>Passing named arguments as part of the <code>...</code></h2>
+<p>Sometimes it is just as easy to pass objects directly to named
+arguments, skipping the use of the <code>objects</code> argument. These
+will be returned at the top level of the list, instead of within the
+<code>objects</code> list element. Recent versions of
+<code>SpaDES.core</code> allow <code>...</code> to be passed to
+<code>simInit</code>, so it can handle either using <code>objects</code>
+(the original way to pass arguments to <code>simInit</code>) or just
+arbitrarily named arguments.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">list</span>(<span class="at">projectPath =</span> <span class="st">&quot;example_12&quot;</span>), <span class="co"># will deduce name of project from projectPath</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>  <span class="at">standAlone =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>  <span class="at">require =</span> <span class="fu">c</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/reproducible@development (&gt;= 1.2.16.9017)&quot;</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/SpaDES.core@development (&gt;= 1.1.0.9001)&quot;</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>  ),</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">c</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_speciesData@master&quot;</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_borealDataPrep@development&quot;</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_core@master&quot;</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_validationKNN@master&quot;</span>,</span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>    <span class="st">&quot;PredictiveEcology/Biomass_speciesParameters@development&quot;</span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>  ),</span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>  <span class="at">studyAreaLarge =</span> terra<span class="sc">::</span><span class="fu">vect</span>(</span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>    terra<span class="sc">::</span><span class="fu">ext</span>(<span class="sc">-</span><span class="dv">598722</span>, <span class="sc">-</span><span class="dv">557858</span>, <span class="dv">776827</span>, <span class="dv">837385</span>),</span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>    <span class="at">crs =</span> terra<span class="sc">::</span><span class="fu">crs</span>(<span class="st">&quot;epsg:3978&quot;</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>  ),</span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a>  <span class="at">studyArea =</span> terra<span class="sc">::</span><span class="fu">vect</span>(</span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a>    terra<span class="sc">::</span><span class="fu">ext</span>(<span class="sc">-</span><span class="dv">598722</span>, <span class="sc">-</span><span class="dv">578177</span>, <span class="dv">779252</span>, <span class="dv">809573</span>),</span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a>    <span class="at">crs =</span> terra<span class="sc">::</span><span class="fu">crs</span>(<span class="st">&quot;epsg:3978&quot;</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a>  )</span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a>)</span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a><span class="co"># Initiate a simInit and spades call:</span></span>
+<span id="cb21-25"><a href="#cb21-25" tabindex="-1"></a><span class="co"># do.call(SpaDES.core::simInitAndSpades, out)</span></span></code></pre></div>
+</div>
+<div id="make-project-level-change-to-.libpaths-that-is-persistent" class="section level2">
+<h2>Make project-level change to .libPaths() that is persistent</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">setupProject</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">&quot;example_13&quot;</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  <span class="at">packages =</span> <span class="st">&quot;terra&quot;</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="at">updateRprofile =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div></div>
+            <div class="d-none d-xl-block col-xl-2 bd-toc">
+               <ul class="section-nav">
+                  <li class="toc-entry"><ul>
+<li><a href="#setting-up-prerequisites-installing-system-dependencies-r-and-rstudio" id="toc-setting-up-prerequisites-installing-system-dependencies-r-and-rstudio">Setting
+Up Prerequisites: Installing System Dependencies, R, and
+RStudio</a></li>
+<li><a href="#installing-spades.project" id="toc-installing-spades.project">Installing
+<code>SpaDES.project</code></a></li>
+<li><a href="#understanding-spades.projects-main-function-setupproject" id="toc-understanding-spades.projects-main-function-setupproject">Understanding
+<code>SpaDES.project</code>’s Main Function:
+<code>setupProject()</code></a>
+<ul>
+<li><a href="#function-objectives" id="toc-function-objectives">Function
+objectives</a></li>
+<li><a href="#function-tasks" id="toc-function-tasks">Function
+Tasks</a></li>
+</ul></li>
+<li><a href="#what-makes-this-function-so-special" id="toc-what-makes-this-function-so-special">What Makes this Function so
+Special</a>
+<ul>
+<li><a href="#versatile-argument-types" id="toc-versatile-argument-types"><strong>1. Versatile Argument
+Types</strong></a></li>
+<li><a href="#sequential-argument-processing" id="toc-sequential-argument-processing"><strong>2. Sequential Argument
+Processing</strong></a></li>
+<li><a href="#handling-missing-values" id="toc-handling-missing-values"><strong>3. Handling Missing
+Values</strong></a></li>
+</ul></li>
+<li><a href="#relationship-between-setupproject-and-spades.coresiminit-call" id="toc-relationship-between-setupproject-and-spades.coresiminit-call">Relationship
+between <code>setupProject()</code> and
+<code>SpaDES.core::simInit</code> Call</a></li>
+<li><a href="#see-also" id="toc-see-also">See Also</a></li>
+<li><a href="#examples-of-usage-of-setupproject" id="toc-examples-of-usage-of-setupproject">Examples of usage of
+<code>setupProject()</code></a>
+<ul>
+<li><a href="#get-modules-from-github" id="toc-get-modules-from-github">Get modules from GitHub</a></li>
+<li><a href="#paths" id="toc-paths">Paths</a></li>
+<li><a href="#default-values" id="toc-default-values">Default
+values</a></li>
+<li><a href="#arguments-sourced-sequentially" id="toc-arguments-sourced-sequentially">Arguments sourced
+sequentially</a></li>
+<li><a href="#arguments-not-sourced-to-.globalenv" id="toc-arguments-not-sourced-to-.globalenv">Arguments not sourced to
+.GlobalEnv</a></li>
+<li><a href="#with-options-and-params-set" id="toc-with-options-and-params-set">With options and params
+set</a></li>
+<li><a href="#arguments-as-values-or-urls" id="toc-arguments-as-values-or-urls">Arguments as values or
+urls</a></li>
+<li><a href="#setting-arbitrary-arguments-using-defaultdots" id="toc-setting-arbitrary-arguments-using-defaultdots">Setting arbitrary
+arguments, using defaultDots</a></li>
+<li><a href="#pass-args-from-globalenv" id="toc-pass-args-from-globalenv">Pass args from GlobalEnv</a></li>
+<li><a href="#mixing-argument-a-named-list-a-github-file-and-local-file" id="toc-mixing-argument-a-named-list-a-github-file-and-local-file">Mixing
+argument: a named list, a github file and local file</a></li>
+<li><a href="#studyarea-argument" id="toc-studyarea-argument"><code>studyArea</code> argument</a></li>
+<li><a href="#require-and-objects-arguments" id="toc-require-and-objects-arguments"><code>require</code> and
+<code>objects</code> arguments</a></li>
+<li><a href="#passing-named-arguments-as-part-of-the-..." id="toc-passing-named-arguments-as-part-of-the-...">Passing named
+arguments as part of the <code>...</code></a></li>
+<li><a href="#make-project-level-change-to-.libpaths-that-is-persistent" id="toc-make-project-level-change-to-.libpaths-that-is-persistent">Make
+project-level change to .libPaths() that is persistent</a></li>
+</ul></li>
+</ul></li>
+               </ul>
+            </div>
+         </div>
+               </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js" data-external="1"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" data-external="1"></script>
+      <script src="https://r-universe.dev/static/article.js" data-external="1"></script>
+
+      <!-- Mathjax -->
+      <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" data-external="1"></script> -->
+      <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js" data-external="1"></script>
+   </body>
+</html>

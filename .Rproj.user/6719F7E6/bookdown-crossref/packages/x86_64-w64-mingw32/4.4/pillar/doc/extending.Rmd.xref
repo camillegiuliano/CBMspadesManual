@@ -1,0 +1,12 @@
+h2:header Header
+h3:tweak-header Tweak header
+h3:restyle-header Restyle header
+h2:footer Footer
+h3:restyle-footer Restyle footer
+h3:compute-additional-info-beforehand Compute additional info beforehand
+h2:row-ids Row IDs
+h2:body Body
+h3:tweak-pillar-composition Tweak pillar composition
+h3:tweak-display-of-compound-pillars Tweak display of compound pillars
+h3:restyle-body Restyle body
+

@@ -1,0 +1,7 @@
+h2:its-dangerous-to-change-state It’s dangerous to change state
+h2:the-base-solution-on.exit The base solution: 
+h2:defer-is-the-foundation-of-withr  is the foundation of withr
+h2:last-in-first-out Last-in, first-out
+h2:local-functions-and-with-functions  functions (and  functions)
+h2:deferring-events-on-the-global-environment Deferring events on the global environment
+

@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="generator" content="r-universe/pandoc">
+      <meta name="author" content="Alex M. Chubaty">
+      
+      <title>Installing R</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" data-external="1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" data-external="1">
+      <link rel="stylesheet" href="https://r-universe.dev/static/article-styles.css" data-external="1">
+   </head>
+   <body>
+      <div class="container" id="topcontainer">
+         <script>if (window.self != window.top) try {document.getElementById('topcontainer').className = "container-fluid article-in-iframe"; } catch(e) {}</script>
+         <h1 class="title">Installing R</h1>
+                  <div class="row">
+            <div class="col-xl-10"><div id="installing-r" class="section level2">
+<h2>Installing R</h2>
+<div id="traditional-installation" class="section level3">
+<h3>Traditional installation</h3>
+<div id="windows" class="section level4">
+<h4>Windows</h4>
+<ol style="list-style-type: decimal">
+<li><p>Download and run the R installer (as administrator!) from <a href="https://cran.r-project.org/bin/windows/base" class="uri">https://cran.r-project.org/bin/windows/base</a>.</p></li>
+<li><p>(Optional) To build and compile packages, download and install
+the latest Rtools (as administrator!) from <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a>. Be sure
+to check the “add rtools to PATH” option during installation.</p></li>
+<li><p>(Optional) Install GIS tools by downloading OSGeo4W from <a href="http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe" class="uri">http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe</a>
+and running the installer (select ‘Express Install’).</p></li>
+</ol>
+</div>
+<div id="macos" class="section level4">
+<h4>macOS</h4>
+<ol style="list-style-type: decimal">
+<li><p>Download and run the R installer from <a href="https://cran.r-project.org/bin/macosx" class="uri">https://cran.r-project.org/bin/macosx</a>.</p></li>
+<li><p>Install Xcode commandline tools from the terminal:</p>
+<pre><code>xcode-select --install</code></pre></li>
+<li><p>Install homebrew from the terminal (more info at <a href="https://brew.sh/" class="uri">https://brew.sh/</a>):</p>
+<pre><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code></pre></li>
+<li><p>Install GDAL and other spatial packages:</p>
+<pre><code>brew install pkg-config
+brew install gdal</code></pre>
+<p>Then, install spatial R packages from source to pick up the new GDAL
+and PROJ libraries:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## (re)install spatial packages from source</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                 <span class="at">configure.args =</span> <span class="st">&quot;--with-proj-lib=$(brew --prefix)/lib/&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;terra&quot;</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="do">## legacy spatial packages may still be required until fully retired Oct 2023</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rgdal&quot;</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                 <span class="at">configure.args =</span> <span class="fu">c</span>(<span class="st">&quot;--with-proj-lib=$(brew --prefix)/lib/&quot;</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>                                    <span class="st">&quot;--with-proj-include=$(brew --prefix)/include/&quot;</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rgeos&quot;</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">## confirm the GDAL, GEOS, PROJ versions being used</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span></code></pre></div></li>
+<li><p>Install GLPK (needed for full <code>igraph</code>
+functionality):</p>
+<pre><code>brew install glpk</code></pre>
+<p>Then, reinstall <code>igraph</code> from source so it is compiled
+with GLPK:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;igraph&quot;</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div></li>
+</ol>
+</div>
+<div id="linux" class="section level4">
+<h4>Linux</h4>
+<p>Install via <code>apt</code> or <code>yum</code> depending on your
+distribution. Instructions for Ubuntu 20.04 LTS are shown below.</p>
+<ol style="list-style-type: decimal">
+<li><p>Install R and its development libraries following instructions
+based on <a href="https://cran.r-project.org/bin/linux/ubuntu" class="uri">https://cran.r-project.org/bin/linux/ubuntu</a>:</p>
+<pre><code>## update indices
+sudo apt update -qq
+
+## install two helper packages we need
+sudo apt install --no-install-recommends software-properties-common dirmngr
+
+## add the signing key (by Michael Rutter) for these repos
+## To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
+## Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
+## add the R 4.0 repo from CRAN
+sudo add-apt-repository &quot;deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/&quot;
+
+## install R and its development libraries
+sudo apt install r-base r-base-dev</code></pre></li>
+<li><p>Install java and configure R to use it:</p>
+<pre><code>sudo apt build-dep -y r-cran-rjava
+sudo R CMD javareconf</code></pre></li>
+<li><p>Install dependencies for spatial and other packages:</p>
+<pre><code>sudo apt build-dep -y r-cran-tkrplot
+
+sudo apt-get install -y \
+  curl \
+  gdal-bin \
+  git \
+  libcairo2-dev \
+  libcurl4-openssl-dev \
+  libgdal-dev \
+  libgeos-dev \
+  libgit2-dev \
+  libglpk-dev \
+  libgmp-dev \
+  libjq-dev \
+  libmagick++-dev \
+  libproj-dev \
+  libprotobuf-dev \
+  libprotoc-dev \
+  libssh2-1-dev \
+  libssl-dev \
+  libudunits2-dev \
+  libv8-dev \
+  libxml2-dev \
+  libxt-dev \
+  pandoc \
+  pandoc-citeproc \
+  protobuf-compiler \
+  python3-gdal \
+  tcl-dev \
+  tk-dev</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="alternate-installation" class="section level3">
+<h3>Alternate installation</h3>
+<p>For users who require multiple versions of R concurrently,
+<code>rig</code> (<a href="https://github.com/r-lib/rig" class="uri">https://github.com/r-lib/rig</a>) provides the simplest
+mechanism for managing and running multiple installations.</p>
+<ol style="list-style-type: decimal">
+<li><p>Install <code>rig</code> for your system following instructions
+here: <a href="https://github.com/r-lib/rig#id-installation" class="uri">https://github.com/r-lib/rig#id-installation</a></p></li>
+<li><p>Install the versions of R you need:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">rig</span> add 4.3</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">rig</span> add 4.2</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">rig</span> add 4.1</span></code></pre></div>
+<p>You can see the installed versions (and the default, starred) by
+using <code>rig list</code>.</p>
+<p>Set the default version using the names from
+<code>rig list</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">rig</span> default 4.3.1</span></code></pre></div></li>
+<li><p>Setup symlinks to allow easy launch of versioned R sessions:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">rig</span> system make-links</span></code></pre></div>
+<p>E.g., to launch R 4.2 on macOS, use <code>R-4.2-arm64</code></p></li>
+<li><p>On macOS, restrict access to system package directories:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">rig</span> system fix-permissions</span></code></pre></div></li>
+<li><p>On macOS can also use the menu bar app (<a href="https://github.com/r-lib/rig#id-macos-menu-bar-app" class="uri">https://github.com/r-lib/rig#id-macos-menu-bar-app</a>) to
+manage their R versions:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">open</span> <span class="at">-a</span> Rig</span></code></pre></div>
+<p>Be sure to open the Rig app preferences to allow launch at
+startup.</p></li>
+</ol>
+<div id="launching-rstudio-using-a-specific-version-of-r" class="section level4">
+<h4>Launching Rstudio using a specific version of R</h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co">## e.g., on macOS:</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">rig</span> rstudio 4.2-arm64</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">## e.g., for a project using renv on ubuntu:</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="bu">cd</span> ~/path/to/project</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="ex">rig</span> rstudio renv.lock</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="installing-rstudio" class="section level2">
+<h2>Installing Rstudio</h2>
+<p><strong>Recommended.</strong></p>
+<p>Download and run the installer for your operating system from <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>.</p>
+</div></div>
+            <div class="d-none d-xl-block col-xl-2 bd-toc">
+               <ul class="section-nav">
+                  <li class="toc-entry"><ul>
+<li><a href="#installing-r" id="toc-installing-r">Installing R</a></li>
+<li><a href="#installing-rstudio" id="toc-installing-rstudio">Installing
+Rstudio</a></li>
+</ul></li>
+               </ul>
+            </div>
+         </div>
+               </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js" data-external="1"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" data-external="1"></script>
+      <script src="https://r-universe.dev/static/article.js" data-external="1"></script>
+
+      <!-- Mathjax -->
+      <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" data-external="1"></script> -->
+      <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js" data-external="1"></script>
+   </body>
+</html>

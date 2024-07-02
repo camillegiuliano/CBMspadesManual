@@ -1,0 +1,25 @@
+h2:introduction Introduction
+h2:interpreting-diffs Interpreting Diffs
+h3:shortest-edit-script Shortest Edit Script
+h3:diff-structure Diff Structure
+h3:atomic-vectors Atomic Vectors
+h2:other-diff-functions Other Diff Functions
+h3:method-overview Method Overview
+h3:compare-structure-with-diffstr Compare Structure with 
+h3:compare-vectors-elements-with-diffchr Compare Vectors Elements with 
+h3:why-s4 Why S4?
+h3:return-value Return Value
+h2:controlling-diffs-and-their-appearance Controlling Diffs and Their Appearance
+h3:parameters Parameters
+h3:display-mode Display Mode
+h3:color-mode Color Mode
+h3:output-formats Output Formats
+h3:brightness Brightness
+h3:pagers Pagers
+h3:styles Styles
+h2:diff-algorithm Diff Algorithm
+h2:performance-considerations Performance Considerations
+h3:diff Diff
+h3:capture-and-processing Capture and Processing
+h3:minimal-diff Minimal Diff
+

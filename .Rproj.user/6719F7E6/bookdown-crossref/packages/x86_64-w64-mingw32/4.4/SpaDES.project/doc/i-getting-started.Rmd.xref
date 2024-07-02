@@ -1,0 +1,29 @@
+h1:setting-up-prerequisites-installing-system-dependencies-r-and-rstudio Setting Up Prerequisites: Installing System Dependencies, R, and RStudio
+h1:installing-spades.project Installing 
+h1:understanding-spades.projects-main-function-setupproject Understanding ’s Main Function: 
+h2:function-objectives Function objectives
+h2:function-tasks Function Tasks
+h1:what-makes-this-function-so-special What Makes this Function so Special
+h2:versatile-argument-types 
+h2:sequential-argument-processing 
+h2:handling-missing-values 
+h1:relationship-between-setupproject-and-spades.coresiminit-call Relationship between  and  Call
+h1:see-also See Also
+h1:examples-of-usage-of-setupproject Examples of usage of 
+h2:get-modules-from-github Get modules from GitHub
+h2:paths Paths
+h2:default-values Default values
+h2:arguments-sourced-sequentially Arguments sourced sequentially
+h2:arguments-not-sourced-to-.globalenv Arguments not sourced to .GlobalEnv
+h2:with-options-and-params-set With options and params set
+h2:arguments-as-values-or-urls Arguments as values or urls
+h2:setting-arbitrary-arguments-using-defaultdots Setting arbitrary arguments, using defaultDots
+h2:pass-args-from-globalenv Pass args from GlobalEnv
+h2:mixing-argument-a-named-list-a-github-file-and-local-file Mixing argument: a named list, a github file and local file
+h2:studyarea-argument  argument
+h3:alberta-and-british-columbia-canada Alberta and British Columbia, Canada
+h3:specify-an-epsg Specify an 
+h2:require-and-objects-arguments  and  arguments
+h2:passing-named-arguments-as-part-of-the-... Passing named arguments as part of the 
+h2:make-project-level-change-to-.libpaths-that-is-persistent Make project-level change to .libPaths() that is persistent
+

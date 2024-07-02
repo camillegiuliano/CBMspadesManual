@@ -1,0 +1,15 @@
+h2:tldr TL;DR
+h2:project-root Project root
+h3:a-simple-example A simple example
+h4:relative-paths-to-a-stable-root Relative paths to a stable root
+h5:example-a-from-vignettes Example A: From 
+h5:example-b-from-teststestthat Example B: From 
+h5:summary-of-examples-a-and-b Summary of Examples A and B
+h3:criteria Criteria
+h3:shortcuts Shortcuts
+h3:fixed-root Fixed root
+h2:testthat-files  files
+h3:another-example-custom-testing-utilities Another example: custom testing utilities
+h2:summary Summary
+h2:acknowledgement Acknowledgement
+

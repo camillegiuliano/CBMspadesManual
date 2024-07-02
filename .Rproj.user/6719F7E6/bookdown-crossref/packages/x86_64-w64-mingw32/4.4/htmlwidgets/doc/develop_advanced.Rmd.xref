@@ -1,0 +1,8 @@
+h2:overview Overview
+h2:data-transformation Data transformation
+h3:htmlwidgets.dataframetod3 HTMLWidgets.dataframeToD3()
+h3:htmlwidgets.transposearray2d HTMLWidgets.transposeArray2D()
+h3:custom-json-serializer Custom JSON serializer
+h2:passing-javascript-functions Passing JavaScript functions
+h2:custom-widget-html Custom widget HTML
+

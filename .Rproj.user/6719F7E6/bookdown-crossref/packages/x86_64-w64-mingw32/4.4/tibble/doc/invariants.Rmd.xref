@@ -1,0 +1,29 @@
+h2:conventions Conventions
+h2:column-extraction Column extraction
+h3:definition-of-xj Definition of 
+h3:definition-of-xname Definition of 
+h2:column-subsetting Column subsetting
+h3:definition-of-xj-1 Definition of 
+h3:definition-of-x-j Definition of 
+h3:definition-of-x-j-drop-true Definition of 
+h2:row-subsetting Row subsetting
+h3:definition-of-xi Definition of 
+h3:definition-of-xi-drop-true Definition of 
+h2:row-and-column-subsetting Row and column subsetting
+h3:definition-of-x-and-x Definition of  and 
+h3:definition-of-xi-j Definition of 
+h3:definition-of-xi-j-1 Definition of 
+h2:column-update Column update
+h3:definition-of-xj---a Definition of 
+h3:definition-of-xname---a Definition of 
+h2:column-subassignment-xj---a Column subassignment: 
+h3:a-is-a-list-or-data-frame  is a list or data frame
+h3:a-is-a-matrix-or-array  is a matrix or array
+h3:a-is-another-type-of-vector  is another type of vector
+h3:a-is-null  is 
+h3:a-is-not-a-vector  is not a vector
+h2:row-subassignment-xi---list... Row subassignment: 
+h2:row-and-column-subassignment Row and column subassignment
+h3:definition-of-xi-j---a Definition of 
+h3:definition-of-xi-j---a-1 Definition of 
+

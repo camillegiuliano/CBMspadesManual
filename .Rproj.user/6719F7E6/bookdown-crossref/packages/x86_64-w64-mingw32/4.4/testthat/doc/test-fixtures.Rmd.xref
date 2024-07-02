@@ -1,0 +1,13 @@
+h2:test-hygiene Test hygiene
+h2:foundations Foundations
+h3:on.exit 
+h3:withrdefer 
+h3:local-helpers  helpers
+h3:pre-existing-helpers Pre-existing helpers
+h2:test-fixtures Test fixtures
+h3:case-study-usethis Case study: usethis
+h2:scope Scope
+h3:file File
+h3:package Package
+h2:other-challenges Other challenges
+

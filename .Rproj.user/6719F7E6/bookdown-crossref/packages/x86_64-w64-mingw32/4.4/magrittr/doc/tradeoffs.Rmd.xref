@@ -1,0 +1,31 @@
+h2:code-transformation Code transformation
+h2:desired-properties Desired properties
+h3:implications-of-design-decisions Implications of design decisions
+h4:placeholder-binding Placeholder binding
+h4:masking-environment Masking environment
+h4:laziness Laziness
+h4:numbered-placeholders Numbered placeholders
+h2:three-implementations Three implementations
+h3:nested-pipe Nested pipe
+h4:multiple-placeholders-r-fail Multiple placeholders 
+h4:lazy-evaluation-r-pass Lazy evaluation 
+h4:persistence-and-eager-unbinding-r-pass Persistence and eager unbinding 
+h4:progressive-stack-r-fail Progressive stack 
+h4:lexical-effects-r-pass Lexical effects 
+h4:continuous-stack-r-pass Continuous stack 
+h3:eager-lexical-pipe Eager lexical pipe
+h4:multiple-placeholders-r-pass Multiple placeholders 
+h4:lazy-evaluation-r-fail Lazy evaluation 
+h4:persistence-r-fail Persistence: 
+h4:eager-unbinding-r-pass Eager unbinding: 
+h4:progressive-stack-r-pass Progressive stack: 
+h4:lexical-effects-and-continuous-stack-r-pass Lexical effects and continuous stack: 
+h3:lazy-masking-pipe Lazy masking pipe
+h4:multiple-placeholders-r-pass-1 Multiple placeholders 
+h4:lazy-evaluation-r-pass-1 Lazy evaluation 
+h4:persistence-r-pass Persistence: 
+h4:eager-unbinding-r-pass-1 Eager unbinding: 
+h4:progressive-stack-r-fail-1 Progressive stack: 
+h4:lexical-effects-r-fail Lexical effects 
+h4:continuous-stack-r-fail Continuous stack 
+

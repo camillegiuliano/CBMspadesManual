@@ -1,0 +1,22 @@
+h1:principles-used-in-require Principles used in 
+h2:key-features Key features
+h2:how-it-works How it works
+h2:why-these-features-help-teams Why these features help teams
+h3:all-working-on-same-project All working on same project
+h3:diverse-projects Diverse projects
+h1:how-require-differs-from-other-approaches How  differs from other approaches
+h3:default-behaviours-different Default behaviours different
+h3:differences-and-similarities-between-pak-and-require Differences and similarities between  and 
+h3:archived-packages Archived packages
+h3:dependency-conflict Dependency conflict
+h3:version-requirements-determine-package-installation Version requirements determine package installation
+h3:error-handling Error handling
+h2:binary-on-linux Binary on Linux
+h3:package-dependencies Package dependencies
+h2:default-arguments-pkgdep...-which-xx-includes-linkingto default arguments –  includes 
+h2:default-behaviour-cran-preference default behaviour – CRAN-preference
+h3:pak-fails-for-packages-on-github-that-are-not-same-name-as-git-repo-in-remotes  fails for packages on GitHub that are not same name as Git Repo in Remotes
+h1:renv-and-require  and 
+h2:managing-projects-during-development Managing projects during development
+h2:using-description-file-to-maintain-minimum-versions Using  file to maintain minimum versions
+
