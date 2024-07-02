@@ -67,7 +67,7 @@ install.packages(c("Require", "SpaDES.project"), repos = repos)
 ## Error in 1:setupChunkStart : argument of length 0
 
 ## set manual version
-Sys.setenv(LANDR_MAN_VERSION = "0.1") ## update this for each new release
+Sys.setenv(SpadesCBM_MAN_VERSION = "0.1") ## update this for each new release
 ########
 
 #RENDERING

@@ -1,5 +1,6 @@
 --- 
 title: "Spades CBM Manual"
+subtitle: "`r paste('v.', Sys.getenv('SpadesCBM_MAN_VERSION'))`"
 author: "John Doe"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
