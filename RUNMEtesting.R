@@ -65,10 +65,11 @@ install.packages(c("Require", "SpaDES.project"), repos = repos)
 
 ##NEW ERROR HERE:
 ## Error in 1:setupChunkStart : argument of length 0
-
-## set manual version
-Sys.setenv(LANDR_MAN_VERSION = "0.1") ## update this for each new release
 ########
+
+# set manual version
+Sys.setenv(SpadesCBM_MAN_VERSION = "0.1") ## update this for each new release
+  # this added as a subtitle in the yml header
 
 #RENDERING
 render_book(output_format = "all", envir = new.env())
