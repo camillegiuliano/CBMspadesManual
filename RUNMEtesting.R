@@ -72,9 +72,3 @@ Sys.setenv(LANDR_MAN_VERSION = "0.1") ## update this for each new release
 
 #RENDERING
 render_book(output_format = "all", envir = new.env())
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
