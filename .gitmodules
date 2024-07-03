@@ -1,3 +1,12 @@
 [submodule "modules/CBM_defaults"]
 	path = modules/CBM_defaults
 	url = git@github.com:PredictiveEcology/CBM_defaults.git
+[submodule "modules/CBM_core"]
+	path = modules/CBM_core
+	url = git@github.com:PredictiveEcology/CBM_core.git
+[submodule "modules/CBM_dataPrep_SK"]
+	path = modules/CBM_dataPrep_SK
+	url = git@github.com:PredictiveEcology/CBM_dataPrep_SK.git
+[submodule "modules/CBM_vol2biomass"]
+	path = modules/CBM_vol2biomass
+	url = git@github.com:PredictiveEcology/CBM_vol2biomass.git
