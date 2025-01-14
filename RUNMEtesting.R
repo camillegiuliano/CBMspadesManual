@@ -36,21 +36,17 @@ if (!"remotes" %in% installed.packages(lib.loc = pkgPath))
   install.packages("remotes")
 
 if (!"Require" %in% installed.packages(lib.loc = pkgPath) ||
-    packageVersion("Require", lib.loc = pkgPath) < "0.1.6.9015") {
-  remotes::install_github("PredictiveEcology/Require@bfb3ed19231d38362e7324f10435a387e29b6ce1",
-                          upgrade = FALSE, force = TRUE)
+    packageVersion("Require", lib.loc = pkgPath) == "1.0.1") {
+  install.packages("Require")
 }
 
-install.packages('bookdown')
-install.packages('fansi')
-install.packages('vctrs')
-install.packages('downlit')
-install.packages('xml2')
-library(bookdown)
-library(fansi)
-library(vctrs)
-library(downlit)
-library(xml2)
+Require::Require(c("bookdown", "ROpenSci/bibtex", "data.table", "downlit",
+                   "formatR", "git2r", "kableExtra", "yihui/knitr", 
+                   "fansi", "xml2", "vctrs"))
+
+library(devtools)
+install_github("PredictiveEcology/SpaDES.docs@development")
+
 
 ########
 # CERES SCRIPT MAY NOT WORK
@@ -58,14 +54,10 @@ repos <- c("predictiveecology.r-universe.dev", getOption("repos"))
 install.packages(c("Require", "SpaDES.project"), repos = repos)
 ##remove the yml header
 .copyModuleRmds <- SpaDES.docs::prepManualRmds("modules", rebuildCache = FALSE)
-##giving me an error: 
-## Error in file(con, "r") : cannot open the connection
-## In addition: Warning message:
-##  In file(con, "r") : cannot open file '2.Rmd': No such file or directory
 
-##NEW ERROR HERE:
-## Error in 1:setupChunkStart : argument of length 0
-########
+if (!file.exists("docs/.nojekyll")) {
+  file.create("docs/.nojekyll")
+}
 
 # set manual version
 Sys.setenv(SpadesCBM_MAN_VERSION = "0.1") ## update this for each new release
