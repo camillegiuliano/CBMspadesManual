@@ -12,9 +12,10 @@
 <div style="text-align: center;">
 <a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
 <a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
-</div><h2>Documentation for package &lsquo;Require&rsquo; version 0.3.1.9092</h2>
+</div><h2>Documentation for package &lsquo;Require&rsquo; version 1.0.1.9003</h2>
 
 <ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+<li><a href="../doc/index.html">User guides, package vignettes and other documentation.</a></li>
 <li><a href="../NEWS">Package NEWS</a>.</li>
 </ul>
 
@@ -26,12 +27,26 @@
 <td>Require: Installing and Loading R Packages for Reproducible Workflows</td></tr>
 <tr><td style="width: 25%;"><a href="dot-downloadFileMasterMainAuth.html">.downloadFileMasterMainAuth</a></td>
 <td>GITHUB_PAT-aware and 'main'-'master'-aware download from GitHub</td></tr>
+<tr><td style="width: 25%;"><a href="dot-installed.pkgs.html">.installed.pkgs</a></td>
+<td>Partial alternative (faster) to 'installed.packages'</td></tr>
 <tr><td style="width: 25%;"><a href="availableVersions.html">available.packagesCached</a></td>
 <td>Available and archived versions</td></tr>
 <tr><td style="width: 25%;"><a href="availablePackagesOverride.html">availablePackagesOverride</a></td>
 <td>Create a custom "available.packages" object</td></tr>
 <tr><td style="width: 25%;"><a href="availableVersionOK.html">availableVersionOK</a></td>
 <td>Needs 'VersionOnRepos', 'versionSpec' and 'inequality' columns</td></tr>
+<tr><td style="width: 25%;"><a href="clearRequire.html">cacheClearPackages</a></td>
+<td>Clear Require Cache elements</td></tr>
+<tr><td style="width: 25%;"><a href="cacheDefaultDir.html">cacheDefaultDir</a></td>
+<td>The default cache directory for Require Cache</td></tr>
+<tr><td style="width: 25%;"><a href="cacheDir.html">cacheDir</a></td>
+<td>Path to (package) cache directory</td></tr>
+<tr><td style="width: 25%;"><a href="cacheGetOptionCachePkgDir.html">cacheGetOptionCachePkgDir</a></td>
+<td>Get the option for 'Require.cachePkgDir'</td></tr>
+<tr><td style="width: 25%;"><a href="cacheDir.html">cachePkgDir</a></td>
+<td>Path to (package) cache directory</td></tr>
+<tr><td style="width: 25%;"><a href="cachePurge.html">cachePurge</a></td>
+<td>Purge everything in the Require cache</td></tr>
 <tr><td style="width: 25%;"><a href="checkLibPaths.html">checkLibPaths</a></td>
 <td>Creates the directories, and adds version number</td></tr>
 <tr><td style="width: 25%;"><a href="checkPath.html">checkPath</a></td>
@@ -40,6 +55,8 @@
 <td>Check directory path</td></tr>
 <tr><td style="width: 25%;"><a href="clearRequire.html">clearRequirePackageCache</a></td>
 <td>Clear Require Cache elements</td></tr>
+<tr><td style="width: 25%;"><a href="compareVersion2.html">compareVersion2</a></td>
+<td>Compare package versions</td></tr>
 <tr><td style="width: 25%;"><a href="dealWithMissingLibPaths.html">dealWithMissingLibPaths</a></td>
 <td>Only checks for deprecated libPath argument (singular)</td></tr>
 <tr><td style="width: 25%;"><a href="DESCRIPTION-helpers.html">DESCRIPTIONFileOtherV</a></td>
@@ -72,8 +89,6 @@
 <td>Create link to file, falling back to making a copy if linking fails.</td></tr>
 <tr><td style="width: 25%;"><a href="getDeps.html">getDeps</a></td>
 <td>The 'packages' argument may have up to 4 pieces of information for GitHub packages: name, repository, branch, version. For CRAN-alikes, it will only be 2 pieces: name, version. There can also be an inequality or equality, if there is a version.</td></tr>
-<tr><td style="width: 25%;"><a href="getOptionRPackageCache.html">getOptionRPackageCache</a></td>
-<td>Get the option for 'Require.RPackageCache'</td></tr>
 <tr><td style="width: 25%;"><a href="RequireOptions.html">getRequireOptions</a></td>
 <td>'Require' options</td></tr>
 <tr><td style="width: 25%;"><a href="Require.html">Install</a></td>
@@ -84,6 +99,8 @@
 <td>Join a data.table with a 'Package' column to 'available.packages'</td></tr>
 <tr><td style="width: 25%;"><a href="linkOrCopy.html">linkOrCopy</a></td>
 <td>Create link to file, falling back to making a copy if linking fails.</td></tr>
+<tr><td style="width: 25%;"><a href="masterMainToHead.html">masterMainToHead</a></td>
+<td>This converts master or main to HEAD for a git repo</td></tr>
 <tr><td style="width: 25%;"><a href="messageVerbose.html">messageDF</a></td>
 <td>Use message to print a clean square data structure</td></tr>
 <tr><td style="width: 25%;"><a href="messageVerbose.html">messageVerbose</a></td>
@@ -100,6 +117,8 @@
 <td>Normalize filepath</td></tr>
 <tr><td style="width: 25%;"><a href="paddedFloatToChar.html">paddedFloatToChar</a></td>
 <td>Convert numeric to character with padding</td></tr>
+<tr><td style="width: 25%;"><a href="pakEnv.html">pakEnv</a></td>
+<td>2nd level</td></tr>
 <tr><td style="width: 25%;"><a href="GitHubTools.html">parseGitHub</a></td>
 <td>Parse a github package specification</td></tr>
 <tr><td style="width: 25%;"><a href="pkgDep.html">pkgDep</a></td>
@@ -116,16 +135,12 @@
 <td>Take a snapshot of all the packages and version numbers</td></tr>
 <tr><td style="width: 25%;"><a href="pkgSnapshot.html">pkgSnapshot2</a></td>
 <td>Take a snapshot of all the packages and version numbers</td></tr>
-<tr><td style="width: 25%;"><a href="purgeCache.html">purgeCache</a></td>
+<tr><td style="width: 25%;"><a href="cachePurge.html">purgeCache</a></td>
 <td>Purge everything in the Require cache</td></tr>
 <tr><td style="width: 25%;"><a href="Require.html">Require</a></td>
 <td>Require: Installing and Loading R Packages for Reproducible Workflows</td></tr>
-<tr><td style="width: 25%;"><a href="RequireCacheDir.html">RequireCacheDir</a></td>
-<td>Path to (package) cache directory</td></tr>
 <tr><td style="width: 25%;"><a href="RequireOptions.html">RequireOptions</a></td>
 <td>'Require' options</td></tr>
-<tr><td style="width: 25%;"><a href="RequireCacheDir.html">RequirePkgCacheDir</a></td>
-<td>Path to (package) cache directory</td></tr>
 <tr><td style="width: 25%;"><a href="rmBase.html">rmBase</a></td>
 <td>Recursive function to remove '.basePkgs'</td></tr>
 <tr><td style="width: 25%;"><a href="rversions.html">rversions</a></td>

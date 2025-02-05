@@ -1,3 +1,89 @@
+# CHANGES IN xfun VERSION 0.50
+
+- The function `isFALSE()` has been removed from this package. The deprecation notice was given two years ago: https://yihui.org/en/2023/02/xfun-isfalse/
+
+- Added a new function `tabset()` to represent a list with a tabset. The representation is similar to `str()`, but uses a visual form.
+
+- Factored out the function `taml_load()` and exported it (TAML is a tiny subset of YAML). Also added a new function `taml_save()` to convert simple lists to YAML.
+
+- The `print` argument of `record()` can accept non-function values now, in which case `print()` (or `show()` for S4 objects) will be used as the print function.
+
+- The `record()` results can also be formatted to Markdown via `format(record(), to = 'markdown')`.
+
+- Moved `knitr::combine_words()` into this package as `xfun::join_words()`. The former has become a simple wrapper of the latter.
+
+- Similarly, moved `knitr::write_bib()` into this package as `xfun::pkg_bib()`.
+
+- Moved the internal function `str_wrap()` from **knitr** and exported it as `xfun::str_wrap()`.
+
+- Exported the internal `find_globals()` and `find_locals()` functions.
+
+- `md_table()` escapes `|` in the table to `\|` instead of `&#124;` now.
+
+- `yaml_load(use_yaml = FALSE)` allows for indenting sub-fields by any number of spaces now (thanks, @J-Moravec, #95). Previously, one level of indentation must use exactly 2 spaces.
+
+- `divide_chunk()` no longer requires every line of chunk options to be commented out when the engine uses a pair of comment delimiters (such as `/*` and `*/` for CSS) instead of a single comment character. It suffices to use the opening delimiter at the beginning and closing delimiter at the end, e.g.,
+
+  ````md
+  ```{css}
+  /*| echo=FALSE,
+      label='foo' */
+  ```
+  ````
+  
+  Previously, every line must be commented out like:
+  
+  ````md
+  ```{css}
+  /*| echo=FALSE, */
+  /*| label='foo' */
+  ```
+  ````
+
+# CHANGES IN xfun VERSION 0.49
+
+- Added an argument `use_block = FALSE` to `protect_math()`. When `use_block = TRUE`, a `$$ $$` expression that spans across multiple lines will be protected in a code block.
+
+- `protect_math()` will ignore `$ $` if there are backticks after the opening `$` or before the closing `$`, e.g., ``$`this is not math`$``.
+
+- `protect_math()` allows for parentheses `()` around math expressions now, e.g., `($x$)` was previously not recognized but is recognized now (thanks, @AlbertLei, yihui/litedown#34).
+
+- `record()` works with `quote()` now (thanks, @ben-schwen, yihui/litedown#38).
+
+- `html_escape()` will not escape double quotes (i.e., convert `"`" to `&quot;`) by default, and the conversion will be done only for `html_escape(attr = TRUE)`.
+
+- The arguments `before` and `after` of `read_all()` can take functions of two arguments now, with the second argument being the content of each file.
+
+- Added an argument `start` to `make_fence()`.
+
+# CHANGES IN xfun VERSION 0.48
+
+- Added utilities for HTML tags: `html_tag()`, `html_escape()`, `html_escape()`, and `html_view()`. Removed the soft dependency on the **htmltools** package accordingly.
+
+- `base_pkgs()` is faster now: it calls `tools::standard_package_names()` if the function exists (R >= 4.4.0), otherwise it just returns a constant vector of base package names (thanks, @arnaudgallou, #91).
+
+- Added a function `mime_type()` to obtain the MIME types of files via `mime::guess_type()` if **mime** is installed, otherwise it will call `tools:::mime_type()`, and fall back to using a system command (e.g., `file --mime-type`) to obtain the types.
+
+- Added a function `file_rename()` to deal with `file.rename()` failures by calling `file.copy()` (thanks, @Giqles @katrinabrock, rstudio/bookdown#804).
+
+- `new_app()` will use `utils::browseURL()` to open the app if `options('viewer')` is not configured (thanks, @AlbertLei, yihui/litedown#29).
+
+- Added a method `record_print.record_asis()` to return the object as is.
+
+# CHANGES IN xfun VERSION 0.47
+
+- Added functions `lazy_save()` and `lazy_load()` to save objects to files and lazy-load them.
+
+- Fixed a bug in `record(dev = svglite::svglite)` that misplaced plots when low-level plot functions are used (thanks, @liao961120, yihui/litedown#17).
+
+- Specified the lowest R version required (v3.2.0) for this package.
+
+# CHANGES IN xfun VERSION 0.46
+
+- `md_table()` should add a vertical ellipsis to row names when rows are truncated by the `limit` argument.
+
+- `session_info()` recognizes Positron now (thanks, @chuxinyuan, #89).
+
 # CHANGES IN xfun VERSION 0.45
 
 - For `record()` with `verbose = 1` or `2`, invisible `NULL` is no longer printed.

@@ -16,8 +16,8 @@ Description: A single key function, 'Require' that makes rerun-tolerant
         developer.
 URL: https://Require.predictiveecology.org,
         https://github.com/PredictiveEcology/Require
-Date: 2024-07-02
-Version: 0.3.1.9092
+Date: 2024-12-17
+Version: 1.0.1.9003
 Authors@R: c(
     person(given = "Eliot J B",
            family = "McIntire",
@@ -35,30 +35,31 @@ Authors@R: c(
     )
 Depends: R (>= 4.0)
 Imports: data.table (>= 1.10.4), methods, sys, tools, utils
-Suggests: covr, curl, diffobj, gitcreds, googledrive, httr, pak,
-        parallel, rematch2, rprojroot, testthat (>= 3.0.0), waldo,
-        withr
+Suggests: covr, curl, diffobj, fpCompare, gitcreds, httr, pak,
+        parallel, rematch2, rmarkdown, knitr, rlang, roxygen2,
+        rprojroot, testthat (>= 3.0.0), tibble, waldo, withr
 Encoding: UTF-8
 Language: en-CA
 License: GPL-3
+VignetteBuilder: knitr, rmarkdown
 BugReports: https://github.com/PredictiveEcology/Require/issues
 ByteCompile: yes
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Collate: 'CRAN.R' 'Require-helpers.R' 'Require-package.R' 'messages.R'
         'Require2.R' 'RequireOptions.R' 'envs.R' 'extract.R'
-        'helpers.R' 'pkgDep.R' 'pkgDep3.R' 'pkgSnapshot.R'
+        'helpers.R' 'pak.R' 'pkgDep.R' 'pkgDep3.R' 'pkgSnapshot.R'
         'setLibPaths.R' 'setup.R' 'zzz.R'
 Config/testthat/edition: 3
 Repository: https://predictiveecology.r-universe.dev
 RemoteUrl: https://github.com/PredictiveEcology/Require
-RemoteRef: simplify4
-RemoteSha: a5f9f0fe4fc8a7306116e37bdbef514d1ec8fb99
+RemoteRef: development
+RemoteSha: 78867701a172e595b4ae0a9186d40a63e9003969
 NeedsCompilation: no
-Packaged: 2024-07-02 15:25:50 UTC; root
+Packaged: 2024-12-17 18:30:23 UTC; root
 Author: Eliot J B McIntire [aut, cre] (<https://orcid.org/0000-0002-6914-8316>),
   Alex M Chubaty [ctb] (<https://orcid.org/0000-0001-7146-8135>),
   Her Majesty the Queen in Right of Canada, as represented by the
     Minister of Natural Resources Canada [cph]
 Maintainer: Eliot J B McIntire <eliot.mcintire@canada.ca>
-Built: R 4.4.0; ; 2024-07-02 15:27:53 UTC; windows
+Built: R 4.4.2; ; 2024-12-17 18:33:57 UTC; windows

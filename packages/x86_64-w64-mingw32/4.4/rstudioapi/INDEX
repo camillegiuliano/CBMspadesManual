@@ -17,11 +17,13 @@ filesPaneNavigate       Navigate to a Directory in the Files Pane
 getActiveProject        Retrieve path to active RStudio project
 getDelegatedAzureToken
                         OAuth2 Tokens for Delegated Azure Resources
+getMode                 Report whether RStudio Desktop or RStudio
+                        Server is in use
 getRStudioPackageDependencies
                         Get RStudio Package Dependencies
 getThemeInfo            Retrieve Themes
 getThemes               Get Theme List
-getVersion              Return the current version of the RStudio API
+getVersion              Determine the version of RStudio
 hasColorConsole         Check if console supports ANSI color escapes.
 hasFun                  Exists/get for RStudio functions
 highlightUi             Highlight UI Elements within the RStudio IDE

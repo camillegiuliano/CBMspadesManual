@@ -34,6 +34,7 @@ packagesInModules	metadata
 pkgload2	pkgload2
 PlotModuleGraph	listModules
 setProjPkgDir	setProjPkgDir
+setupFiles	setup
 setupFunctions	setup
 setupGitIgnore	setup
 setupModules	setup
@@ -45,6 +46,7 @@ setupProject	setupProject
 setupSideEffects	setup
 setupStudyArea	setup
 SpaDES.project	SpaDES.project-package
+spadesProjectOptions	spadesProjectOptions
 splitGitRepo	imports
 substitutePackages	imports
 toPkgDTFull	imports

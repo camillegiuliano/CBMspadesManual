@@ -46,8 +46,7 @@ knit_exit               Exit knitting early
 knit_expand             A simple macro preprocessor for templating
                         purposes
 knit_filter             Spell check filter for source documents
-knit_global             The global environment in which code chunks are
-                        evaluated
+knit_global             The global environment for evaluating code
 knit_hooks              Hooks for R code chunks, inline R code and
                         output
 knit_meta               Metadata about objects to be printed

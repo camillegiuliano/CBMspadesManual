@@ -1,21 +1,27 @@
 .downloadFileMasterMainAuth
                         GITHUB_PAT-aware and 'main'-'master'-aware
                         download from GitHub
+.installed.pkgs         Partial alternative (faster) to
+                        'installed.packages'
 DESCRIPTIONFileVersionV
                         GitHub package tools
 Require-package         Require: Installing and Loading R Packages for
                         Reproducible Workflows
-RequireCacheDir         Path to (package) cache directory
 RequireOptions          'Require' options
 availablePackagesOverride
                         Create a custom "available.packages" object
 availableVersionOK      Needs 'VersionOnRepos', 'versionSpec' and
                         'inequality' columns
+cacheClearPackages      Clear Require Cache elements
+cacheDefaultDir         The default cache directory for Require Cache
+cacheDir                Path to (package) cache directory
+cacheGetOptionCachePkgDir
+                        Get the option for 'Require.cachePkgDir'
+cachePurge              Purge everything in the Require cache
 checkLibPaths           Creates the directories, and adds version
                         number
 checkPath               Check directory path
-clearRequirePackageCache
-                        Clear Require Cache elements
+compareVersion2         Compare package versions
 dealWithMissingLibPaths
                         Only checks for deprecated libPath argument
                         (singular)
@@ -37,19 +43,20 @@ getDeps                 The 'packages' argument may have up to 4 pieces
                         it will only be 2 pieces: name, version. There
                         can also be an inequality or equality, if there
                         is a version.
-getOptionRPackageCache
-                        Get the option for 'Require.RPackageCache'
 invertList              Invert a 2-level list
 joinToAvailablePackages
                         Join a data.table with a 'Package' column to
                         'available.packages'
 linkOrCopy              Create link to file, falling back to making a
                         copy if linking fails.
+masterMainToHead        This converts master or main to HEAD for a git
+                        repo
 messageDF               Use message to print a clean square data
                         structure
 modifyList2             'modifyList' for multiple lists
 normPath                Normalize filepath
 paddedFloatToChar       Convert numeric to character with padding
+pakEnv                  2nd level
 parseGitHub             Parse a github package specification
 pkgDepEnv               2nd level
 pkgDepIfDepRemoved      Package dependencies when one or more packages
@@ -57,7 +64,6 @@ pkgDepIfDepRemoved      Package dependencies when one or more packages
 pkgDepTopoSort          Reverse package depends
 pkgSnapshot             Take a snapshot of all the packages and version
                         numbers
-purgeCache              Purge everything in the Require cache
 rmBase                  Recursive function to remove '.basePkgs'
 rversions               R versions
 setLibPaths             Set '.libPaths'

@@ -20,4 +20,5 @@ setProjPkgDir           Set the package directory for a project
 setupPaths              Individual setup* functions that are contained
                         within 'setupProject'
 setupProject            Sets up a new or existing SpaDES project
+spadesProjectOptions    'SpaDES.project' options
 user                    Helpers to develop easier to understand code.

@@ -1,3 +1,15 @@
+# rstudioapi 0.17.1
+
+* Ensure a more appropriate error message is emitted for calls to
+  `rstudioapi::getVersion()` and `rstudioapi::getMode()` outside
+  of RStudio.
+
+
+# rstudioapi 0.17.0
+
+* Added `getMode()`, which can be used to differentiate between Desktop
+  and Server installations of RStudio. (#280)
+
 
 # rstudioapi 0.16.0
 
@@ -6,10 +18,12 @@
 
 * Added `setGhostText()` for setting ghost text in the current editor.
 
+
 # rstudioapi 0.15.0
 
 * Added `getDelegatedAzureToken` for Posit Workbench users needing to expose 
   OAuth2 tokens for Azure services that have already had permissions configured
+
 
 # rstudioapi 0.14
 

@@ -64,6 +64,7 @@ card_footer	card_body
 card_header	card_body
 card_image	card_body
 card_title	card_body
+css	reexports
 deprecated	deprecated
 font_collection	font_face
 font_face	font_face
@@ -123,6 +124,7 @@ popover	popover
 precompiled_css_path	precompiled_css_path
 print.bslib_fragment	html-browse
 print.bslib_page	html-browse
+reexports	reexports
 remove_all_fill	as_fill_carrier
 run_with_themer	run_with_themer
 save_html.bslib_fragment	save-html
