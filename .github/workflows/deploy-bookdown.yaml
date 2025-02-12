@@ -69,7 +69,7 @@ jobs:
 
       - name: Build spadesCBM manual
         run: |
-          source("RUNMEtesting.R")
+          source("RUNME.R")
         shell: Rscript {0}
 
       - name: Deploy to GitHub pages 🚀
