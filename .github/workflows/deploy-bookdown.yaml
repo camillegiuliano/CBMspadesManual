@@ -56,7 +56,7 @@ jobs:
           r-version: 4.2.3
           use-public-rspm: false
       
-       - name: Install SpaDES.project
+      - name: Install SpaDES.project
         run: Require::Require("PredictiveEcology/SpaDES.project@development", require = FALSE)
         shell: Rscript {0}
 
