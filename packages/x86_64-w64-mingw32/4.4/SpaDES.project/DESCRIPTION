@@ -1,0 +1,56 @@
+Package: SpaDES.project
+Type: Package
+Title: Project Templates Using 'SpaDES'
+Description: Quickly setup a 'SpaDES' project directories and add
+        modules using templates.
+URL: https://spades-project.predictiveecology.org/,
+        https://github.com/PredictiveEcology/SpaDES.project
+Date: 2025-02-10
+Version: 0.1.1.9015
+Authors@R: c(
+    person("Eliot J B", "McIntire", email = "eliot.mcintire@nrcan-rncan.gc.ca",
+           role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6914-8316")),
+    person("Alex M", "Chubaty", email = "achubaty@for-cast.ca",
+           role = c("ctb"), comment = c(ORCID = "0000-0001-7146-8135")),
+    person("Ian", "Eddy", email = "ian.eddy@nrcan-rncan.gc.ca",
+           role = c("ctb"), comment = c(ORCID = "0000-0001-7397-2116")),
+    person("Ceres", "Barros", email = "ceres.barros@nrcan-rncan.gc.ca",
+           role = c("ctb"), comment = c(ORCID = ""))
+    )
+Depends: R (>= 4.2)
+Imports: data.table, fs, methods, Require (>= 1.0.0), rprojroot,
+        rstudioapi, tools, utils
+Suggests: covr, crayon, digest, ellipsis, filelock, geodata, gert, gh,
+        gitcreds, googledrive, httr, igraph, knitr, leaflet, pkgload,
+        raster, remotes, reproducible, rmarkdown, sf, SpaDES.config,
+        SpaDES.core, terra, testthat (>= 3.0.0), usethis, visNetwork,
+        waldo, withr
+Remotes: PredictiveEcology/SpaDES.config@development,
+        PredictiveEcology/SpaDES.core@development, rspatial/geodata
+Encoding: UTF-8
+Language: en-CA
+License: GPL-3
+VignetteBuilder: knitr, rmarkdown
+BugReports: https://github.com/PredictiveEcology/SpaDES.project/issues
+ByteCompile: yes
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+Collate: 'SpaDES.projectOptions.R' 'environment.R' 'fileEdit.R'
+        'imports.R' 'getModule.R' 'helpers.R' 'listModules.R'
+        'makeDESCRIPTION.R' 'packages.R' 'paths2.R' 'pkgload2.R'
+        'setupProject.R' 'spades-project-package.R'
+        'studyAreaPlotting.R' 'txt.R' 'zzz.R'
+Config/pak/sysreqs: make
+Repository: https://predictiveecology.r-universe.dev
+RemoteUrl: https://github.com/PredictiveEcology/SpaDES.project
+RemoteRef: development
+RemoteSha: 2edd9d0628d120d379cf29b89d99f40d5f672f9d
+NeedsCompilation: no
+Packaged: 2025-02-10 20:30:47 UTC; root
+Author: Eliot J B McIntire [aut, cre] (<https://orcid.org/0000-0002-6914-8316>),
+  Alex M Chubaty [ctb] (<https://orcid.org/0000-0001-7146-8135>),
+  Ian Eddy [ctb] (<https://orcid.org/0000-0001-7397-2116>),
+  Ceres Barros [ctb]
+Maintainer: Eliot J B McIntire <eliot.mcintire@nrcan-rncan.gc.ca>
+Built: R 4.4.2; ; 2025-02-10 20:44:57 UTC; windows

@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="generator" content="r-universe/pandoc">
+      <meta name="author" content="Eliot McIntire">
+      
+      <title>Finding other modules</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" data-external="1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" data-external="1">
+      <link rel="stylesheet" href="https://r-universe.dev/static/article-styles.css?nocache=1" data-external="1">
+   </head>
+   <body>
+      <div class="container" id="topcontainer">
+         <script>if (window.self != window.top) try {document.getElementById('topcontainer').className = "container-fluid article-in-iframe"; } catch(e) {}</script>
+
+         <div class="frontmatter">
+         <h1 class="title">Finding other modules</h1>
+         </div>
+
+                  <div class="row">
+            <div class="col-xl-10"><div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;SpaDES.project&quot;</span>)) {</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  {<span class="fu">install.packages</span>(<span class="st">&quot;SpaDES.project&quot;</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&quot;predictiveecology.r-universe.dev&quot;</span>, <span class="fu">getOption</span>(<span class="st">&quot;repos&quot;</span>)))</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   <span class="fu">require</span>(<span class="st">&quot;SpaDES.project&quot;</span>)}</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>}</span></code></pre></div>
+<div id="find-others-modules" class="section level2">
+<h2>Find other’s modules</h2>
+<p>One powerful aspect of <code>SpaDES</code> is the ability to connect
+to other people’s modules. It can be challenging to know where other
+modules are and what they do. Using the <code>listModules</code>
+function.</p>
+<p>The command sequence we will use is:</p>
+<ul>
+<li><code>listModule</code> to identify which modules exist on cloud
+storage systems,</li>
+<li><code>getModules</code> to bring them (or a subset) to your local
+machine,</li>
+<li><code>moduleDependencies</code> to do the metadata analysis,</li>
+<li><code>moduleDependenciesToGraph</code> converts them to a
+graph,</li>
+<li><code>moduleDependenciesToGraph</code> to visualize that graph.</li>
+</ul>
+<p>A user can use only some of these steps if they do not want to
+produce the visuals.</p>
+<div id="a-small-selection-of-spades-modules" class="section level3">
+<h3>A small selection of SpaDES modules</h3>
+<div id="some-biomass_-modules" class="section level4">
+<h4><strong>Some Biomass_* modules</strong></h4>
+<p>This will search the <code>PredictiveEcology</code> github.com
+repository for any SpaDES module whose name has
+<code>Biomass_species</code>, <code>Biomass_core</code>,
+<code>Biomass_regen</code> in it. The search will find any module that
+contains those keywords, i.e., <code>Biomass_regen</code> will find
+<code>Biomass_regeneration</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>Account <span class="ot">&lt;-</span> <span class="st">&quot;PredictiveEcology&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>grepListShort <span class="ot">&lt;-</span> <span class="st">&quot;Biomass_species|Biomass_core|Biomass_regen&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">listModules</span>(grepListShort, <span class="at">accounts =</span> Account)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>modPath <span class="ot">&lt;-</span> <span class="fu">normPath</span>(<span class="fu">tempdir2</span>())</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">getModule</span>(mods, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">moduleDependencies</span>(mods, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">moduleDependenciesToGraph</span>(DT)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>(vn <span class="ot">&lt;-</span> <span class="fu">PlotModuleGraph</span>(graph))</span></code></pre></div>
+</div>
+<div id="firesense-modules" class="section level4">
+<h4><strong>FireSense modules</strong></h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>Account <span class="ot">&lt;-</span> <span class="st">&quot;PredictiveEcology&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>grepListShort <span class="ot">&lt;-</span> <span class="st">&quot;fireSense&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">listModules</span>(grepListShort, <span class="at">accounts =</span> Account)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">getModule</span>(mods, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">moduleDependencies</span>(mods, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">moduleDependenciesToGraph</span>(DT)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>(vn <span class="ot">&lt;-</span> <span class="fu">PlotModuleGraph</span>(graph))</span></code></pre></div>
+</div>
+<div id="landr-modules" class="section level4">
+<h4><strong>LandR modules</strong></h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>Account <span class="ot">&lt;-</span> <span class="st">&quot;PredictiveEcology&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>grepListShort <span class="ot">&lt;-</span> <span class="st">&quot;Biomass_|LandR&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">listModules</span>(grepListShort, <span class="at">accounts =</span> Account)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">getModule</span>(mods, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">moduleDependencies</span>(mods, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">moduleDependenciesToGraph</span>(DT)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>(vn <span class="ot">&lt;-</span> <span class="fu">PlotModuleGraph</span>(graph))</span></code></pre></div>
+</div>
+</div>
+<div id="a-larger-selection-of-known-spades-modules" class="section level3">
+<h3>A larger selection of “known” SpaDES modules</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Can do same, but with long list -- not done here -- can try</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>accountsListLong <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;PredictiveEcology&quot;</span>, <span class="st">&quot;ianmseddy&quot;</span>, <span class="st">&quot;achubaty&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                       <span class="st">&quot;FOR-CAST&quot;</span>, <span class="st">&quot;eliotmcintire&quot;</span>, <span class="st">&quot;tati-micheletti&quot;</span>, <span class="st">&quot;CeresBarros&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>grepListLong <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Biomass&quot;</span>, <span class="st">&quot;WBI&quot;</span>, <span class="st">&quot;LandR&quot;</span>, <span class="st">&quot;fireSense&quot;</span>, <span class="st">&quot;CBM&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                  <span class="st">&quot;LandMine&quot;</span>, <span class="st">&quot;LandWeb&quot;</span>, <span class="st">&quot;NRV&quot;</span>, <span class="co">#&quot;scfm&quot;,</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                  <span class="st">&quot;priority&quot;</span>, <span class="st">&quot;fire&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                  <span class="st">&quot;dataPrep&quot;</span>, <span class="st">&quot;DataPrep&quot;</span>, <span class="st">&quot;RoF&quot;</span>, <span class="st">&quot;Ontario&quot;</span>, <span class="st">&quot;ROF&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>modsLong <span class="ot">&lt;-</span> <span class="fu">listModules</span>(grepListLong, <span class="at">accounts =</span> accountsListLong)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># pass to listModules for much larger figure</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="fu">getModule</span>(modsLong, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">moduleDependencies</span>(modsLong, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">moduleDependenciesToGraph</span>(DT)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>(vn <span class="ot">&lt;-</span> <span class="fu">PlotModuleGraph</span>(graph))</span></code></pre></div>
+</div>
+<div id="all-spades-modules-in-a-set-of-known-accounts" class="section level3">
+<h3>All SpaDES modules in a set of known accounts</h3>
+<p>This takes much longer to run as it scans all (open) repositories for
+each element of <code>accounts</code>. It will search for a relatively
+“lightweight” indicator of a SpaDES module, namely, a file at the top
+level that has the same name as the repository, but whose file extension
+is <code>.R</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Can do same, but with long list -- not done here -- can try</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>accountsListLong <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;PredictiveEcology&quot;</span>, <span class="st">&quot;ianmseddy&quot;</span>, <span class="st">&quot;achubaty&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                       <span class="st">&quot;FOR-CAST&quot;</span>, <span class="st">&quot;eliotmcintire&quot;</span>, <span class="st">&quot;tati-micheletti&quot;</span>, <span class="st">&quot;CeresBarros&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>modsLong <span class="ot">&lt;-</span> <span class="fu">listModules</span>(<span class="at">accounts =</span> accountsListLong)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># pass to listModules for much larger figure</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">getModule</span>(modsLong, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">moduleDependencies</span>(modsLong, <span class="at">modulePath =</span> modPath)</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">moduleDependenciesToGraph</span>(DT)</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>(vn <span class="ot">&lt;-</span> <span class="fu">PlotModuleGraph</span>(graph))</span></code></pre></div>
+</div>
+</div></div>
+            <div class="d-none d-xl-block col-xl-2 bd-toc">
+               <ul class="section-nav">
+                  <li class="toc-entry"><ul>
+<li><a href="#find-others-modules" id="toc-find-others-modules">Find
+other’s modules</a></li>
+</ul></li>
+               </ul>
+            </div>
+         </div>
+               </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js" data-external="1"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" data-external="1"></script>
+      <script src="https://r-universe.dev/static/article.js" data-external="1"></script>
+
+      <!-- Mathjax -->
+      <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" data-external="1"></script> -->
+      <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.min.js" data-external="1"></script>
+   </body>
+</html>
