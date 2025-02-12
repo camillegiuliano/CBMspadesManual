@@ -3,7 +3,7 @@
 
 prjDir <- SpaDES.project::findProjectPath()
 
-Require::Require(c("yaml", "purr", "fs"))
+Require::Require(c("yaml", "purrr", "fs"))
 
 docsDir <- file.path(prjDir, "_bookdown.yml") |>
   yaml::read_yaml() |>
@@ -19,6 +19,7 @@ dir.create(pkgPath, recursive = TRUE)
 Require::Require(c("bookdown", "ROpenSci/bibtex", "data.table", "downlit",
                    "formatR", "git2r", "kableExtra", "yihui/knitr", 
                    "fansi", "xml2", "vctrs", "RefManageR"))
+install.packages("devtools")
 library(devtools)
 install_github("PredictiveEcology/SpaDES.docs@development")
 
