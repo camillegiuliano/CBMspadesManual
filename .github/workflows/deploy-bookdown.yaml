@@ -56,8 +56,6 @@ jobs:
           r-version: 4.2.3
           use-public-rspm: false
 
-      - uses: r-lib/actions/setup-renv@v2
-
       - name: Cache bookdown results
         uses: actions/cache@v3
         with:
