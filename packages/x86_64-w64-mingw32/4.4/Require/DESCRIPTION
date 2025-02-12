@@ -2,22 +2,20 @@ Package: Require
 Type: Package
 Title: Installing and Loading R Packages for Reproducible Workflows
 Description: A single key function, 'Require' that makes rerun-tolerant
-        versions of 'install.packages' and `require` for CRAN packages,
-        packages no longer on CRAN (i.e., archived), specific versions
-        of packages, and GitHub packages. This approach is developed to
-        create reproducible workflows that are flexible and fast enough
-        to use while in development stages, while able to build
-        snapshots once a stable package collection is found. As with
-        other functions in a reproducible workflow, this package
-        emphasizes functions that return the same result whether it is
-        the first or subsequent times running the function, with
-        subsequent times being sufficiently fast that they can be run
-        every time without undue waiting burden on the user or
-        developer.
+    versions of 'install.packages' and `require` for CRAN packages, packages
+    no longer on CRAN (i.e., archived), specific versions of packages, 
+    and GitHub packages. This approach is developed to create reproducible 
+    workflows that are flexible and fast enough to use while in development stages,
+    while able to build snapshots once a stable package collection is found. 
+    As with other functions in a reproducible workflow, this package 
+    emphasizes functions that return the same result whether it is 
+    the first or subsequent times running the function, with subsequent times being
+    sufficiently fast that they can be run every time without undue waiting burden on 
+    the user or developer.
 URL: https://Require.predictiveecology.org,
         https://github.com/PredictiveEcology/Require
-Date: 2024-12-17
-Version: 1.0.1.9003
+Date: 2024-08-06
+Version: 1.0.1
 Authors@R: c(
     person(given = "Eliot J B",
            family = "McIntire",
@@ -44,22 +42,19 @@ License: GPL-3
 VignetteBuilder: knitr, rmarkdown
 BugReports: https://github.com/PredictiveEcology/Require/issues
 ByteCompile: yes
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Collate: 'CRAN.R' 'Require-helpers.R' 'Require-package.R' 'messages.R'
         'Require2.R' 'RequireOptions.R' 'envs.R' 'extract.R'
         'helpers.R' 'pak.R' 'pkgDep.R' 'pkgDep3.R' 'pkgSnapshot.R'
         'setLibPaths.R' 'setup.R' 'zzz.R'
 Config/testthat/edition: 3
-Repository: https://predictiveecology.r-universe.dev
-RemoteUrl: https://github.com/PredictiveEcology/Require
-RemoteRef: development
-RemoteSha: 78867701a172e595b4ae0a9186d40a63e9003969
 NeedsCompilation: no
-Packaged: 2024-12-17 18:30:23 UTC; root
+Packaged: 2024-08-17 15:33:45 UTC; emcintir
 Author: Eliot J B McIntire [aut, cre] (<https://orcid.org/0000-0002-6914-8316>),
   Alex M Chubaty [ctb] (<https://orcid.org/0000-0001-7146-8135>),
   Her Majesty the Queen in Right of Canada, as represented by the
     Minister of Natural Resources Canada [cph]
 Maintainer: Eliot J B McIntire <eliot.mcintire@canada.ca>
-Built: R 4.4.2; ; 2024-12-17 18:33:57 UTC; windows
+Repository: CRAN
+Date/Publication: 2024-08-17 22:20:09 UTC
+Built: R 4.4.2; ; 2025-02-11 01:39:06 UTC; windows

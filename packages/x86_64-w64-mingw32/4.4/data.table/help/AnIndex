@@ -17,6 +17,7 @@ data.table-package	data.table
 .I	special-symbols
 .Last.updated	last.updated
 .N	special-symbols
+.NATURAL	special-symbols
 .NGRP	special-symbols
 .SD	special-symbols
 :=	assign
@@ -205,6 +206,7 @@ setcoalesce	coalesce
 setcolorder	setcolorder
 setDF	setDF
 setdiff	setops
+setdroplevels	fdroplevels
 setDT	setDT
 setDTthreads	openmp-utils
 setequal	setops

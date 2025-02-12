@@ -21,22 +21,22 @@ DF = data.frame(ID = c("b","b","b","a","a","c"), a = 1:6, b = 7:12, c = 13:18)
 DF
 
 ## ----eval = FALSE---------------------------------------------------------------------------------
-#  DF$c <- 18:13               # (1) -- replace entire column
-#  # or
-#  DF$c[DF$ID == "b"] <- 15:13 # (2) -- subassign in column 'c'
+# DF$c <- 18:13               # (1) -- replace entire column
+# # or
+# DF$c[DF$ID == "b"] <- 15:13 # (2) -- subassign in column 'c'
 
 ## ----eval = FALSE---------------------------------------------------------------------------------
-#  DT[, c("colA", "colB", ...) := list(valA, valB, ...)]
-#  
-#  # when you have only one column to assign to you
-#  # can drop the quotes and list(), for convenience
-#  DT[, colA := valA]
+# DT[, c("colA", "colB", ...) := list(valA, valB, ...)]
+# 
+# # when you have only one column to assign to you
+# # can drop the quotes and list(), for convenience
+# DT[, colA := valA]
 
 ## ----eval = FALSE---------------------------------------------------------------------------------
-#  DT[, `:=`(colA = valA, # valA is assigned to colA
-#            colB = valB, # valB is assigned to colB
-#            ...
-#  )]
+# DT[, `:=`(colA = valA, # valA is assigned to colA
+#           colB = valB, # valB is assigned to colB
+#           ...
+# )]
 
 ## -------------------------------------------------------------------------------------------------
 flights[, `:=`(speed = distance / (air_time/60), # speed in mph (mi/h)
@@ -69,7 +69,7 @@ head(flights)
 # flights[, `:=`(delay = NULL)]
 
 ## ----eval = FALSE---------------------------------------------------------------------------------
-#  flights[, delay := NULL]
+# flights[, delay := NULL]
 
 ## -------------------------------------------------------------------------------------------------
 flights[, max_speed := max(speed), by = .(origin, dest)]
@@ -85,6 +85,14 @@ head(flights)
 # RHS gets automatically recycled to length of LHS
 flights[, c("speed", "max_speed", "max_dep_delay", "max_arr_delay") := NULL]
 head(flights)
+
+## -------------------------------------------------------------------------------------------------
+flights[, names(.SD) := lapply(.SD, as.factor), .SDcols = is.character]
+
+## -------------------------------------------------------------------------------------------------
+factor_cols <- sapply(flights, is.factor)
+flights[, names(.SD) := lapply(.SD, as.character), .SDcols = factor_cols]
+str(flights[, ..factor_cols])
 
 ## -------------------------------------------------------------------------------------------------
 foo <- function(DT) {

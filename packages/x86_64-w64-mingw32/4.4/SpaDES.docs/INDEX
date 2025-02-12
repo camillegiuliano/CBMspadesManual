@@ -1,0 +1,5 @@
+addLabel                Labels and captions using 'bookdown'
+                        cross-referencing format
+panble                  Pander and kable wrapper function
+prepManualRmds          Prepare module .Rmd to render book
+wrapStrFun              Wrap/break strings by size

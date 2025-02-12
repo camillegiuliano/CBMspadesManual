@@ -1,0 +1,48 @@
+Package: SpaDES.docs
+Title: Helper Utilities for Creating SpaDES Module Documentation and
+        Manuals
+Description: Groups several functions used to create SpaDES module manuals in Rmarkdown format output to HTML and LaTeX.
+URL: https://github.com/PredictiveEcology/SpaDES.docs
+Date: 2023-09-01
+Version: 0.0.1.9000
+Authors@R: c(
+    person("Alex M", "Chubaty", email = "achubaty@for-cast.ca",
+           role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7146-8135")),
+    person("Ceres", "Barros", email = "ceres.barros@ubc.ca",
+           role = c("aut"), comment = c(ORCID = "0000-0003-4036-977X")),
+    person("Eliot J B", "McIntire", email = "eliot.mcintire@nrcan-rncan.gc.ca",
+           role = c("aut"), comment = c(ORCID = "0000-0002-6914-8316")),
+    person("His Majesty the King in Right of Canada, as represented by the Minister of Natural Resources Canada",
+           role = "cph")
+    )
+Depends: R (>= 4.1)
+Imports: data.table, knitr, kableExtra, modelr, pander, Require,
+        stringi, utils
+Suggests: rmarkdown, roxygen2
+Remotes: PredictiveEcology/Require
+Encoding: UTF-8
+Language: en-CA
+License: GPL (>= 3)
+VignetteBuilder: knitr, rmarkdown
+BugReports: https://github.com/PredictiveEcology/SpaDES.docs/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: SpaDES.docs
+RemoteUsername: PredictiveEcology
+RemoteRef: development
+RemoteSha: 9ed030792bf51b4a502d3bc1d74307f45fcf0705
+GithubRepo: SpaDES.docs
+GithubUsername: PredictiveEcology
+GithubRef: development
+GithubSHA1: 9ed030792bf51b4a502d3bc1d74307f45fcf0705
+NeedsCompilation: no
+Packaged: 2025-02-12 17:46:57 UTC; cgiulian
+Author: Alex M Chubaty [aut, cre] (<https://orcid.org/0000-0001-7146-8135>),
+  Ceres Barros [aut] (<https://orcid.org/0000-0003-4036-977X>),
+  Eliot J B McIntire [aut] (<https://orcid.org/0000-0002-6914-8316>),
+  His Majesty the King in Right of Canada, as represented by the Minister
+    of Natural Resources Canada [cph]
+Maintainer: Alex M Chubaty <achubaty@for-cast.ca>
+Built: R 4.4.2; ; 2025-02-12 17:46:58 UTC; windows
