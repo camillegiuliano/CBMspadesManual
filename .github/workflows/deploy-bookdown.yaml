@@ -55,6 +55,12 @@ jobs:
           Ncpus: 2
           r-version: 4.2.3
           use-public-rspm: false
+          
+      - uses: PredictiveEcology/actions/install-Require@v0.2
+        with:
+          GitTag: 'development'
+
+      - uses: PredictiveEcology/actions/install-SpaDES@v0.2
       
       - name: Install SpaDES.project
         run: Require::Require("PredictiveEcology/SpaDES.project@development", require = FALSE)
