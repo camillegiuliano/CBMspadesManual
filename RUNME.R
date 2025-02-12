@@ -3,6 +3,8 @@
 
 prjDir <- SpaDES.project::findProjectPath()
 
+Require::Require(c("yaml", "purr", "fs"))
+
 docsDir <- file.path(prjDir, "_bookdown.yml") |>
   yaml::read_yaml() |>
   purrr::pluck("output_dir") |>
