@@ -57,8 +57,6 @@ jobs:
           use-public-rspm: false
 
       - uses: r-lib/actions/setup-renv@v2
-        # with:
-        #   profile: '"manual"'
 
       - name: Cache bookdown results
         uses: actions/cache@v3
