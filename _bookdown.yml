@@ -1,6 +1,6 @@
 book_filename: Spades CBM Manual
 repo: https://github.com/camillegiuliano/CBMspadesManual
-output_dir: "../docs"
+output_dir: "./docs"
 before_chapter_script: _common.R
 language:
   ui:
