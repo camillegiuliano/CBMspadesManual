@@ -18,7 +18,7 @@ dir.create(pkgPath, recursive = TRUE)
 
 Require::Require(c("bookdown", "ROpenSci/bibtex", "data.table", "downlit",
                    "formatR", "git2r", "kableExtra", "yihui/knitr", 
-                   "fansi", "xml2", "vctrs", "RefManageR", "remotes"))
+                   "fansi", "xml2", "vctrs", "RefManageR", "remotes", "git2r"))
 remotes::install_github("PredictiveEcology/SpaDES.docs@development")
 
 
