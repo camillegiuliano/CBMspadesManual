@@ -18,10 +18,8 @@ dir.create(pkgPath, recursive = TRUE)
 
 Require::Require(c("bookdown", "ROpenSci/bibtex", "data.table", "downlit",
                    "formatR", "git2r", "kableExtra", "yihui/knitr", 
-                   "fansi", "xml2", "vctrs", "RefManageR"))
-install.packages("devtools")
-library(devtools)
-install_github("PredictiveEcology/SpaDES.docs@development")
+                   "fansi", "xml2", "vctrs", "RefManageR", "remotes"))
+remotes::install_github("PredictiveEcology/SpaDES.docs@development")
 
 
 # bibDir <- Require::checkPath(file.path(prjDir, "citations"), create = TRUE)
