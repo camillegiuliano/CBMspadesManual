@@ -59,8 +59,6 @@ jobs:
       - uses: PredictiveEcology/actions/install-Require@v0.2
         with:
           GitTag: 'development'
-
-      - uses: PredictiveEcology/actions/install-SpaDES@v0.2
       
       - name: Install SpaDES.project
         run: Require::Require("PredictiveEcology/SpaDES.project@development", require = FALSE)
