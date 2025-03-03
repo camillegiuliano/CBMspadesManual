@@ -64,7 +64,7 @@ library(formatR)
 
 ## RENDER BOOK ------------------------------------------
 
-setwd(normalizePath(prjDir))
+# setwd(normalizePath(prjDir))
 
 ## prevents GitHub from rendering book using Jekyll
 if (!file.exists(file.path(prjDir, ".nojekyll"))) {
