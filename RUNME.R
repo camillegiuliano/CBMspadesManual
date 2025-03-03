@@ -33,6 +33,7 @@ library(knitr)
 library(RefManageR)
 library(SpaDES.docs)
 library(formatR)
+library(downlit)
 
 ## references ---------------------------------------
 
