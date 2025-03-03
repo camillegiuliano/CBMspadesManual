@@ -1,7 +1,7 @@
 
 ## this manual must be knitted by running this script
 
-prjDir <- SpaDES.project::findProjectPath() #this might not be needed. 
+# prjDir <- SpaDES.project::findProjectPath() #this might not be needed. 
 
 # Require::Require(c("yaml", "purrr", "fs"))
 
