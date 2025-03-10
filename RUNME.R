@@ -26,13 +26,12 @@ library(downlit)
 
 ## references ---------------------------------------
 
-# automatically create a bib database for R packages
-allPkgs <- .packages(all.available = TRUE, lib.loc = .libPaths()[1])
-keyPkgs <- c(
-  "bookdown", "knitr", "LandR", "CBMutils",
-  "reproducible", "rmarkdown", "shiny", "SpaDES.core", "SpaDES.tools"
-)
-write_bib(allPkgs, file.path(bibDir, "packages.bib")) ## TODO: using allPkgs, not all pkgs have dates/years
+## automatically create a bib database for R packages
+allPkgs <- c("base", .packages(all.available = TRUE, lib.loc = .libPaths()))
+suppressWarnings({
+  ## TODO: using allPkgs, not all pkgs have dates/years
+  write_bib(allPkgs, file.path(bibDir, "packages.bib"))
+})
 
 ## collapse all chapter .bib files into one ------
 bibFiles <- c(
@@ -52,9 +51,10 @@ if (!file.exists(csl)) {
   download.file("https://www.zotero.org/styles/ecology-letters?source=1", destfile = csl)
 }
 
+
 ## RENDER BOOK ------------------------------------------
 
-# setwd(normalizePath(prjDir))
+setwd(normalizePath(prjDir))
 
 ## prevents GitHub from rendering book using Jekyll
 if (!file.exists(file.path(prjDir, ".nojekyll"))) {
