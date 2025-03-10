@@ -34,15 +34,15 @@ suppressWarnings({
 })
 
 ## collapse all chapter .bib files into one ------
-bibFiles <- c(
-  list.files(file.path(prjDir, "m"), "references_", recursive = TRUE, full.names = TRUE),
-  file.path(bibDir, "packages.bib"),
-  file.path(bibDir, "references.bib")
-)
-bibdata <- lapply(bibFiles, function(f) {
-  if (file.exists(f)) RefManageR::ReadBib(f)
-})
-bibdata <- Reduce(merge, bibdata)
+# bibFiles <- c(
+#   list.files(file.path(prjDir, "m"), "references_", recursive = TRUE, full.names = TRUE),
+#   file.path(bibDir, "packages.bib"),
+#   file.path(bibDir, "references.bib")
+# )
+# bibdata <- lapply(bibFiles, function(f) {
+#   if (file.exists(f)) RefManageR::ReadBib(f)
+# })
+# bibdata <- Reduce(merge, bibdata)
 
 WriteBib(bibdata, file = file.path(bibDir, "references.bib"))
 
