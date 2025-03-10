@@ -10,8 +10,8 @@ docsDir <- file.path(prjDir, "_bookdown.yml") |>
   purrr::pluck("output_dir") |>
   fs::path_abs()
 
-# bibDir <- Require::checkPath(file.path(prjDir, "citations"), create = TRUE)
-# figDir <- Require::checkPath(file.path(docsDir, "figures"), create = TRUE)
+bibDir <- Require::checkPath(file.path(prjDir, "citations"), create = TRUE)
+figDir <- Require::checkPath(file.path(docsDir, "figures"), create = TRUE)
 
 # load packages -------------------------------------
 
@@ -26,31 +26,31 @@ library(downlit)
 
 ## references ---------------------------------------
 
-## automatically create a bib database for R packages
-# allPkgs <- .packages(all.available = TRUE, lib.loc = .libPaths()[1])
-# keyPkgs <- c(
-#   "bookdown", "knitr", "LandR", "CBMutils,
-#   "reproducible", "rmarkdown", "shiny", "SpaDES.core", "SpaDES.tools"
-# )
-# write_bib(allPkgs, file.path(bibDir, "packages.bib")) ## TODO: using allPkgs, not all pkgs have dates/years
-# 
-# ## collapse all chapter .bib files into one ------
-# bibFiles <- c(
-#   list.files(file.path(prjDir, "m"), "references_", recursive = TRUE, full.names = TRUE),
-#   file.path(bibDir, "packages.bib"),
-#   file.path(bibDir, "references.bib")
-# )
-# bibdata <- lapply(bibFiles, function(f) {
-#   if (file.exists(f)) RefManageR::ReadBib(f)
-# })
-# bibdata <- Reduce(merge, bibdata)
-# 
-# WriteBib(bibdata, file = file.path(bibDir, "references.bib"))
-# 
-# csl <- file.path(bibDir, "ecology-letters.csl")
-# if (!file.exists(csl)) {
-#   download.file("https://www.zotero.org/styles/ecology-letters?source=1", destfile = csl)
-# }
+# automatically create a bib database for R packages
+allPkgs <- .packages(all.available = TRUE, lib.loc = .libPaths()[1])
+keyPkgs <- c(
+  "bookdown", "knitr", "LandR", "CBMutils",
+  "reproducible", "rmarkdown", "shiny", "SpaDES.core", "SpaDES.tools"
+)
+write_bib(allPkgs, file.path(bibDir, "packages.bib")) ## TODO: using allPkgs, not all pkgs have dates/years
+
+## collapse all chapter .bib files into one ------
+bibFiles <- c(
+  list.files(file.path(prjDir, "m"), "references_", recursive = TRUE, full.names = TRUE),
+  file.path(bibDir, "packages.bib"),
+  file.path(bibDir, "references.bib")
+)
+bibdata <- lapply(bibFiles, function(f) {
+  if (file.exists(f)) RefManageR::ReadBib(f)
+})
+bibdata <- Reduce(merge, bibdata)
+
+WriteBib(bibdata, file = file.path(bibDir, "references.bib"))
+
+csl <- file.path(bibDir, "ecology-letters.csl")
+if (!file.exists(csl)) {
+  download.file("https://www.zotero.org/styles/ecology-letters?source=1", destfile = csl)
+}
 
 ## RENDER BOOK ------------------------------------------
 
