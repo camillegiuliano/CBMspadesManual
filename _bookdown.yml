@@ -12,3 +12,4 @@ rmd_files:
   - modules/CBM_dataPrep_SK/CBM_dataPrep_SK.Rmd
   - modules/CBM_vol2biomass/CBM_vol2biomass.Rmd
   - modules/CBM_core/CBM_core.Rmd
+  - 99-references.Rmd
