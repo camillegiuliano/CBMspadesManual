@@ -44,7 +44,7 @@ suppressWarnings({
 # })
 # bibdata <- Reduce(merge, bibdata)
 
-WriteBib(bibdata, file = file.path(bibDir, "references.bib"))
+# WriteBib(bibdata, file = file.path(bibDir, "references.bib"))
 
 csl <- file.path(bibDir, "ecology-letters.csl")
 if (!file.exists(csl)) {
